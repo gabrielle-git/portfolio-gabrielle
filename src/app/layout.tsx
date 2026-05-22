@@ -42,16 +42,16 @@ export const metadata: Metadata = {
     title: "Gabrielle Campelo · Software Engineer",
     description: "Backend · Automação · IA",
     siteName: "Gabrielle Campelo",
-    images: [{ url: "/avatar.jpeg", width: 1024, height: 1024 }],
+    images: [{ url: "/avatar.png", width: 1024, height: 1024 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Gabrielle Campelo · Software Engineer",
     description: "Backend · Automação · IA",
-    images: ["/avatar.jpeg"],
+    images: ["/avatar.png"],
   },
   robots: { index: true, follow: true },
-  icons: { icon: "/avatar.jpeg", apple: "/avatar.jpeg" },
+  icons: { icon: "/avatar.png", apple: "/avatar.png" },
 };
 
 export default function RootLayout({
