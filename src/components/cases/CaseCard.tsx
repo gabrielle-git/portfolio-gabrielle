@@ -2,6 +2,7 @@
 
 import { useRef, useState, useCallback } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import type { Project } from "@/lib/data/projects";
 
@@ -15,10 +16,9 @@ const STATUS_CONFIG = {
 interface CaseCardProps {
   project: Project;
   index: number;
-  onClick: (project: Project) => void;
 }
 
-export function CaseCard({ project, index, onClick }: CaseCardProps) {
+export function CaseCard({ project, index }: CaseCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [spotlight, setSpotlight] = useState({ x: 50, y: 50, opacity: 0 });
@@ -53,12 +53,13 @@ export function CaseCard({ project, index, onClick }: CaseCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.5, delay: index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+      className="h-full"
     >
+      <Link href={`/cases/${project.id}`} className="block h-full">
       <div
         ref={cardRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        onClick={() => onClick(project)}
         style={{
           transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
           transition:
@@ -135,6 +136,7 @@ export function CaseCard({ project, index, onClick }: CaseCardProps) {
           </div>
         </div>
       </div>
+      </Link>
     </motion.div>
   );
 }

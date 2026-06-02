@@ -1,19 +1,3 @@
-/* ================================================================
- * projects.ts — Fonte única de verdade dos projetos
- * Portfolio Gabrielle Campelo · Software Engineer
- * ================================================================
- *
- * Esse arquivo é a "base de dados" estática dos cases featured.
- * Outros projetos (acadêmicos, secundários) ficam em otherProjects.ts.
- *
- * Adicionar projeto: adicionar uma entrada no array PROJECTS.
- * O TypeScript garante que nenhum campo obrigatório seja esquecido.
- * ================================================================ */
-
-/* ----------------------------------------------------------------
- * TIPOS — Define a "forma" de um projeto
- * ---------------------------------------------------------------- */
-
 export type ProjectCategory =
   | "saas"           // Produto SaaS
   | "automation"     // Automação de processos
@@ -111,17 +95,7 @@ export interface GalleryItem {
   caption?: string;
 }
 
-/* ----------------------------------------------------------------
- * DADOS — Cases featured
- *
- * Ordem do array = ordem de exibição.
- * Mais impactante primeiro.
- * ---------------------------------------------------------------- */
-
 export const PROJECTS: Project[] = [
-  /* ============================================================
-   * 1. NUTRIAPROVA — SaaS B2B com IA generativa
-   * ============================================================ */
   {
     id: "nutriaprova",
     title: "NutriAprova",
@@ -176,9 +150,6 @@ export const PROJECTS: Project[] = [
     featured: true,
   },
 
-  /* ============================================================
-   * 2. PCDF/IML — Automação documental em ambiente crítico
-   * ============================================================ */
   {
     id: "pcdf-iml",
     title: "Fatiador de Documentos — PCDF/IML",
@@ -229,9 +200,52 @@ export const PROJECTS: Project[] = [
     featured: true,
   },
 
-  /* ============================================================
-   * 3. SISTERS LIVE — Pipeline ETL com idempotência
-   * ============================================================ */
+  {
+    id: "doa-relprev",
+    title: "RELPREV — Painel de Segurança Operacional",
+    tagline: "Aplicação single-file offline-first para gestão de ocorrências em aviação policial",
+    category: "internal-tool",
+    status: "completed",
+    engagement: "internal",
+    client: "Polícia Civil do Distrito Federal · Divisão de Operações Aéreas",
+    role: "Engenheira de Software",
+    period: "2026",
+    problem:
+      "A divisão precisava registrar e analisar ocorrências de segurança operacional — eventos de voo, manutenção e solo — de forma estruturada e com avaliação de risco, mas em um ambiente com restrições de TI: sem garantia de internet, sem permissão para instalar software e sem servidor externo disponível. Planilhas soltas não davam conta de padronização, avaliação de risco nem controle de acesso.",
+    solution:
+      "Aplicação web em arquivo único (um HTML que abre direto no navegador e funciona totalmente offline) que grava direto em uma pasta de rede via File System Access API, com espelho local em IndexedDB para nunca perder dados caso a TI bloqueie a API. Autenticação com hash SHA-256 via Web Crypto e controle de papéis (administrador/comum), formulário que se adapta à natureza da ocorrência (voo, manutenção, pessoa), avaliação de risco por matriz de criticidade e gráficos gerados em SVG nativo, sem nenhuma biblioteca externa.",
+    stack: [
+      "HTML / CSS / JavaScript (vanilla, zero dependências)",
+      "File System Access API",
+      "IndexedDB",
+      "Web Crypto (SHA-256)",
+      "SVG (gráficos nativos)",
+      "RBAC (controle de papéis)",
+    ],
+    highlights: [
+      "Arquitetura single-file: um único HTML, sem build, sem dependências, sem instalação",
+      "Persistência híbrida: grava direto na pasta de rede (File System Access API) com espelho offline em IndexedDB",
+      "Autenticação com hash SHA-256 via Web Crypto e controle de papéis (RBAC)",
+      "Gráficos de análise desenhados em SVG nativo, sem biblioteca de charts",
+      "Formulário adaptativo que muda os campos conforme a natureza da ocorrência",
+      "Avaliação de risco por matriz de criticidade (baixo / médio / alto / crítico)",
+      "Parser que importa relatos colados em texto e estrutura automaticamente",
+      "Backup e restauração manual como rede de segurança contra bloqueio de TI",
+      "Funciona 100% offline, sem internet e sem servidor",
+    ],
+    impact: [
+      "Registro estruturado e padronizado de ocorrências de segurança operacional",
+      "Operação sem dependência de internet, instalação ou servidor externo",
+      "Autonomia da divisão sobre os próprios dados (pasta de rede local)",
+      "Análise visual de risco e tendências via gráficos",
+      "Zero custo de infraestrutura ou licença de software",
+    ],
+    context:
+      "Ferramenta construída sob restrições reais de TI de um ambiente de segurança pública. A engenharia demonstra domínio de APIs de browser avançadas e pouco usadas (File System Access, IndexedDB, Web Crypto), com prioridade em autonomia, offline-first e zero dependência externa. Os dados operacionais permanecem locais, na rede da própria divisão.",
+    heroImage: "/cases/doa/architecture.png",
+    featured: true,
+  },
+
   {
     id: "sisters-live",
     title: "Pipeline Sisters Live",
@@ -276,13 +290,50 @@ export const PROJECTS: Project[] = [
     heroImage: "/cases/sisters/architecture.png",
     featured: true,
   },
+
+  {
+    id: "diario-pcdf",
+    title: "Diário de Rotação — PCDF",
+    tagline: "Ferramenta autoral de registro institucional com camada de dados pronta para escalar",
+    category: "internal-tool",
+    status: "ongoing",
+    engagement: "product-lead",
+    role: "Desenvolvedora autoral",
+    period: "2026 — presente",
+    problem:
+      "Durante a rotação por múltiplas unidades de um órgão público, era necessário registrar de forma organizada os setores percorridos, as pessoas conhecidas em cada área, as impressões do dia a dia e a avaliação de cada unidade. Anotações soltas se perdiam e não permitiam consultar histórico, relacionar pessoas a setores nem acompanhar a evolução das avaliações.",
+    solution:
+      "Aplicação React com modelagem de domínio rica e uma camada de persistência abstrata desenhada desde o início para migrar de localStorage para um backend sem reescrever a aplicação. O domínio modela hierarquia de setores em três níveis, relação muitos-para-muitos entre pessoas e setores, entradas de diário datadas e avaliações de setor com histórico. Um catálogo institucional indexado alimenta os campos com autocomplete, sem travar entrada livre.",
+    stack: [
+      "React 19",
+      "TypeScript (estrito)",
+      "Vite 6",
+      "Tailwind CSS 4",
+      "React Router 7",
+      "date-fns",
+      "localStorage (camada abstrata)",
+    ],
+    highlights: [
+      "Camada de storage abstrata: mesma interface para localStorage hoje e Supabase no futuro, sem refactor",
+      "Modelagem de domínio rica: hierarquia de setores em 3 níveis e relação N:N entre pessoas e setores",
+      "Sistema de migrações versionado para evolução de schema",
+      "Hooks customizados por entidade (setores, pessoas, entradas, avaliações, tema)",
+      "Catálogo institucional indexado (96 subunidades) alimentando autocomplete sem bloquear entrada livre",
+      "TypeScript em modo estrito forçando disciplina de tipos",
+    ],
+    impact: [
+      "Registro organizado e consultável de toda a rotação institucional",
+      "Base de código reutilizável e pronta para virar produto",
+      "Arquitetura preparada para migração a Supabase sem reescrita",
+      "Demonstração prática de modelagem de domínio e decisões de longo prazo",
+    ],
+    context:
+      "Projeto autoral em desenvolvimento ativo. O valor está nas decisões de arquitetura: abstrair a persistência desde o dia 1 e modelar o domínio com rigor, de modo que a ferramenta possa crescer de um uso pessoal para um produto sem dívida técnica.",
+    heroImage: "/cases/diario-pcdf/architecture.png",
+    featured: true,
+  },
 ];
 
-/* ----------------------------------------------------------------
- * HELPERS — Funções utilitárias pra consumir os dados
- * ---------------------------------------------------------------- */
-
-/** Retorna apenas projetos marcados como featured (destaques da home) */
 export const featuredProjects = PROJECTS.filter((p) => p.featured);
 
 /** Retorna projetos por categoria */
