@@ -2,6 +2,7 @@
 
 import { useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import type { Project } from "@/lib/data/projects";
 
@@ -103,6 +104,19 @@ export function CaseModal({ project, onClose }: CaseModalProps) {
 
               {/* Conteúdo */}
               <div className="p-6 pt-5 flex flex-col gap-6">
+
+                {/* Diagrama de arquitetura */}
+                {project.heroImage && (
+                  <div className="rounded-xl overflow-hidden border border-white/8 bg-white/[0.02]">
+                    <Image
+                      src={project.heroImage}
+                      alt={`Diagrama de arquitetura — ${project.title}`}
+                      width={1200}
+                      height={800}
+                      className="w-full h-auto"
+                    />
+                  </div>
+                )}
 
                 {/* Aviso NDA */}
                 {project.confidential && (

@@ -85,6 +85,30 @@ export interface Project {
 
   /** Texto livre adicional sobre o contexto (opcional, narrativa expandida) */
   context?: string;
+
+  /** Diagrama de arquitetura exibido no topo do modal (caminho em /public) */
+  heroImage?: string;
+
+  /** Galeria de screenshots exibida no modal */
+  gallery?: GalleryItem[];
+
+  /** URL pública do projeto ao vivo (mostra botão "Ver ao vivo") */
+  liveUrl?: string;
+
+  /** URL do repositório público (mostra botão "Ver código") */
+  repoUrl?: string;
+}
+
+/** Item de galeria: uma imagem com texto alternativo e legenda opcional */
+export interface GalleryItem {
+  /** Caminho da imagem em /public (ex.: "/cases/nutriaprova/landing.png") */
+  src: string;
+
+  /** Texto alternativo para acessibilidade */
+  alt: string;
+
+  /** Legenda curta exibida sobre a imagem (opcional) */
+  caption?: string;
 }
 
 /* ----------------------------------------------------------------
@@ -148,6 +172,7 @@ export const PROJECTS: Project[] = [
     ],
     context:
       "Atuação end-to-end: levantamento de requisitos com nutricionistas, decisões arquiteturais com visão de produto, implementação backend, integração com IA em produção e operação de infra containerizada. Maturidade para escolher quando NÃO usar IA (validação clínica, autenticação, billing — tudo isso é código determinístico).",
+    heroImage: "/cases/nutriaprova/architecture.png",
     featured: true,
   },
 
@@ -200,6 +225,7 @@ export const PROJECTS: Project[] = [
     ],
     context:
       "Projeto desenvolvido durante cobertura de férias na divisão administrativa do IML. A engenharia foi avaliada por aquilo que não pode falhar: documentos confidenciais, perímetro de segurança rígido, contexto jurídico. Maturidade para entender que automação em ambiente regulado não é sobre fazer rápido — é sobre fazer auditável, reprodutível e seguro.",
+    heroImage: "/cases/pcdf-iml/architecture.png",
     featured: true,
   },
 
@@ -247,6 +273,7 @@ export const PROJECTS: Project[] = [
       "Cliente economizou em ferramentas pagas equivalentes (Zapier Premium, HubSpot, etc.)",
       "Nurturing automatizado liberou time comercial para conversões quentes",
     ],
+    heroImage: "/cases/sisters/architecture.png",
     featured: true,
   },
 ];
