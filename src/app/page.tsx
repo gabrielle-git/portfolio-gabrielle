@@ -1,5 +1,6 @@
 import { Hero } from "@/components/hero/Hero";
 import { SmoothScroll } from "@/components/effects/SmoothScroll";
+import { CasesSection } from "@/components/cases/CasesSection";
 
 export default function Home() {
   return (
@@ -7,6 +8,7 @@ export default function Home() {
       <SmoothScroll />
       <main>
         <Hero />
+        <CasesSection />
       </main>
     </>
   );
