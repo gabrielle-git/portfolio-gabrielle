@@ -104,9 +104,8 @@ body {
   min-height: 100vh;
 
   background-image:
-    linear-gradient(rgba(167, 139, 250, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(167, 139, 250, 0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
+    radial-gradient(70% 50% at 50% 0%, rgba(139, 92, 246, 0.06), transparent 70%);
+  background-attachment: fixed;
 }
 
 /* ---------- Scrollbar ---------- */

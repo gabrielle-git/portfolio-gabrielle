@@ -13,6 +13,18 @@ export function Hero() {
     <section className="relative min-h-screen flex flex-col overflow-hidden">
       <AuroraBackground />
 
+      {/* scan de boot — varre o hero uma vez na carga */}
+      <motion.div
+        className="pointer-events-none absolute inset-x-0 z-[5] h-32"
+        style={{
+          background:
+            "linear-gradient(to bottom, transparent, rgba(167,139,250,0.10), transparent)",
+        }}
+        initial={{ top: "-15%", opacity: 0 }}
+        animate={{ top: "115%", opacity: [0, 1, 1, 0] }}
+        transition={{ duration: 1.6, delay: 0.15, ease: "easeOut" }}
+      />
+
       <div className="relative z-10 px-6 md:px-12 lg:px-20 py-6">
         <HeroStatusBar />
       </div>
@@ -26,7 +38,7 @@ export function Hero() {
               className="flex flex-col sm:flex-row gap-3 mt-10"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 5 }}
+              transition={{ duration: 0.5, delay: 1.05 }}
             >
               <Button href="#cases" variant="primary">
                 Ver cases
@@ -49,7 +61,7 @@ export function Hero() {
         className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 5.5 }}
+        transition={{ duration: 0.8, delay: 1.35 }}
       >
         <motion.div
           animate={{ y: [0, 6, 0] }}
