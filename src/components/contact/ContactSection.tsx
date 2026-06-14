@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { supabase } from "@/lib/supabase";
 
 const WEB3FORMS_ACCESS_KEY = "67de06b9-5cbb-4844-ba26-478f9f1f336f";
 const LINKEDIN_URL = "https://www.linkedin.com/in/helena-gabrielle-da-cunha-campêlo/";
@@ -53,26 +54,51 @@ export function ContactSection() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
-    setStatus("sending");
 
     const formData = new FormData(form);
-    const payload = {
-      access_key: WEB3FORMS_ACCESS_KEY,
-      subject: "Novo contato pelo portfólio",
-      from_name: "Portfólio Gabrielle",
-      name: formData.get("name"),
-      email: formData.get("email"),
-      message: formData.get("message"),
-    };
+    const nome = String(formData.get("name") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const mensagem = String(formData.get("message") ?? "").trim();
+
+    // Validação simples no cliente
+    if (!nome || !email || !mensagem) {
+      setStatus("error");
+      return;
+    }
+
+    setStatus("sending");
+
+    // 1) Salva no Supabase (RLS: insert público, leitura bloqueada)
+    const dbPromise = supabase.from("mensagens").insert({ nome, email, mensagem });
+
+    // 2) Notifica por email (Web3Forms) — bônus, não bloqueia
+    const emailPromise = fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: "Novo contato pelo portfólio",
+        from_name: "Portfólio Gabrielle",
+        name: nome,
+        email,
+        message: mensagem,
+      }),
+    });
 
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(payload),
-      });
-      const data = await res.json();
-      if (data.success) {
+      const [dbResult, emailResult] = await Promise.allSettled([
+        dbPromise,
+        emailPromise,
+      ]);
+
+      const dbOk = dbResult.status === "fulfilled" && !dbResult.value.error;
+      const emailOk = emailResult.status === "fulfilled" && emailResult.value.ok;
+
+      if (dbResult.status === "fulfilled" && dbResult.value.error) {
+        console.error("Supabase:", dbResult.value.error.message);
+      }
+
+      if (dbOk || emailOk) {
         setStatus("success");
         form.reset();
       } else {
@@ -87,27 +113,37 @@ export function ContactSection() {
     "w-full rounded-lg bg-white/5 border border-white/10 px-4 py-2.5 text-sm text-[var(--text-primary)] placeholder:text-white/30 outline-none focus:border-[var(--accent-primary)]/50 focus:ring-1 focus:ring-[var(--accent-primary)]/30 transition-colors";
 
   return (
-    <section id="contato" className="relative w-full py-24 px-6">
+    <section id="contato" className="relative w-full py-24 px-6 overflow-hidden">
       {/* Linha decorativa */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent to-white/10" />
 
-      <div className="max-w-5xl mx-auto flex flex-col gap-12">
+      {/* Glow de atmosfera */}
+      <div
+        className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full blur-[140px] opacity-[0.06]"
+        style={{
+          background: "radial-gradient(circle, var(--accent-glow), transparent 70%)",
+        }}
+      />
+
+      <div className="relative max-w-5xl mx-auto flex flex-col gap-12">
         {/* Título */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col gap-2"
+          className="flex flex-col gap-3"
         >
-          <span className="text-xs font-mono text-[var(--accent-primary)]/60 tracking-widest uppercase">
+          <span className="flex items-center gap-2 text-xs font-mono text-[var(--accent-primary)] tracking-widest uppercase">
+            <span className="inline-block w-6 h-px bg-[var(--accent-primary)] shadow-[0_0_8px_var(--accent-glow)]" />
             04 / contato
           </span>
-          <h2 className="text-3xl sm:text-4xl font-semibold text-[var(--text-primary)] leading-tight">
+          <h2 className="text-3xl sm:text-5xl font-semibold text-[var(--text-primary)] leading-[1.05] tracking-tight">
             Vamos conversar
           </h2>
-          <p className="text-white/40 text-sm max-w-lg leading-relaxed">
-            Aberta a oportunidades remotas. Me manda uma mensagem por aqui ou pelos canais abaixo.
+          <p className="text-white/45 text-sm sm:text-base max-w-lg leading-relaxed">
+            Aberta a oportunidades remotas. Me manda uma mensagem por aqui ou pelos
+            canais abaixo.
           </p>
         </motion.div>
 
@@ -121,18 +157,20 @@ export function ContactSection() {
             className="flex flex-col gap-3"
           >
             {LINKS.map((link) => (
-                <a
+              <a
                 key={link.label}
                 href={link.href}
                 target={link.external ? "_blank" : undefined}
                 rel={link.external ? "noopener noreferrer" : undefined}
-                className="group flex items-center gap-4 rounded-xl border border-white/8 bg-white/3 px-5 py-4 hover:border-[var(--accent-primary)]/40 transition-colors"
+                className="group flex items-center gap-4 rounded-xl border border-white/[0.08] bg-white/[0.03] px-5 py-4 hover:border-[var(--accent-primary)]/40 hover:bg-[var(--accent-primary)]/[0.04] transition-colors"
               >
                 <span className="text-white/40 group-hover:text-[var(--accent-primary)] transition-colors">
                   {link.icon}
                 </span>
                 <span className="flex flex-col">
-                  <span className="text-xs font-mono text-white/30 tracking-widest uppercase">{link.label}</span>
+                  <span className="text-xs font-mono text-white/30 tracking-widest uppercase">
+                    {link.label}
+                  </span>
                   <span className="text-sm text-white/70 group-hover:text-[var(--text-primary)] transition-colors">
                     {link.value}
                   </span>
