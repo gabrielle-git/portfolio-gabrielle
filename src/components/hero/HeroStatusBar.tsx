@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
 
 function Pill({
   label,
@@ -23,11 +22,9 @@ function Pill({
 }
 
 export function HeroStatusBar() {
-  // Placeholders no 1º render (evita mismatch de hidratação); preenchidos no cliente.
   const [time, setTime] = useState("--:--:--");
   const [uptime, setUptime] = useState("00:00:00");
   const [fps, setFps] = useState<number | null>(null);
-  const [visitas, setVisitas] = useState<number | null>(null);
 
   useEffect(() => {
     // Hora local do visitante + tempo na página
@@ -41,7 +38,7 @@ export function HeroStatusBar() {
       setUptime(`${hh}:${mm}:${ss}`);
     }, 1000);
 
-    // FPS real: mede quantos frames a máquina do visitante renderiza por segundo
+    // FPS real
     let frames = 0;
     let last = performance.now();
     let raf = 0;
@@ -59,44 +56,6 @@ export function HeroStatusBar() {
     return () => {
       clearInterval(clock);
       cancelAnimationFrame(raf);
-    };
-  }, []);
-
-  // Contador de visitas real (Supabase). Conta 1x por sessão; senão só lê.
-  useEffect(() => {
-    let cancel = false;
-    (async () => {
-      const KEY = "visita_contada";
-      try {
-        const jaContou =
-          typeof window !== "undefined" && sessionStorage.getItem(KEY);
-
-        if (!jaContou) {
-          const inc = await supabase.rpc("increment_visitas");
-          if (!inc.error && inc.data != null) {
-            if (!cancel) setVisitas(Number(inc.data));
-            try {
-              sessionStorage.setItem(KEY, "1");
-            } catch {
-              /* sessionStorage indisponível */
-            }
-            return;
-          }
-        }
-
-        const sel = await supabase
-          .from("contadores")
-          .select("valor")
-          .eq("id", "visitas")
-          .single();
-        if (!sel.error && sel.data && !cancel) setVisitas(Number(sel.data.valor));
-      } catch {
-        /* Supabase indisponível — mantém o placeholder "—" */
-      }
-    })();
-
-    return () => {
-      cancel = true;
     };
   }, []);
 
@@ -123,12 +82,6 @@ export function HeroStatusBar() {
       </div>
 
       <div className="flex items-center gap-3">
-        <Pill label="visitas" className="hidden md:flex">
-          <span className="text-accent tabular-nums font-semibold">
-            {visitas == null ? "—" : visitas.toLocaleString("pt-BR")}
-          </span>
-        </Pill>
-
         <Pill label="fps" className="hidden lg:flex">
           <span className="text-[#5eead4] tabular-nums font-semibold">
             {fps ?? "—"}
