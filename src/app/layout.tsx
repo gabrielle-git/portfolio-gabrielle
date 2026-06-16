@@ -44,13 +44,11 @@ export const metadata: Metadata = {
     title: "Gabrielle Campelo · Software Engineer",
     description: "Backend · Automação · IA",
     siteName: "Gabrielle Campelo",
-    images: [{ url: "/avatar.png", width: 1024, height: 1024 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Gabrielle Campelo · Software Engineer",
     description: "Backend · Automação · IA",
-    images: ["/avatar.png"],
   },
   robots: { index: true, follow: true },
   icons: { icon: "/avatar.png", apple: "/avatar.png" },
