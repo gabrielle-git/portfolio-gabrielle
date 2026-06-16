@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Pixelify_Sans } from "next/font/google";
 import "./globals.css";
 import { CommandPalette } from "@/components/ui/CommandPalette";
 import { VisitTracker } from "@/components/analytics/VisitTracker";
+import { RecruiterChat } from "@/components/chat/RecruiterChat";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -65,6 +66,7 @@ export default function RootLayout({
         {children}
         <CommandPalette />
         <VisitTracker />
+        <RecruiterChat />
       </body>
     </html>
   );

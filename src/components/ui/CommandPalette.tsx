@@ -195,7 +195,7 @@ export function CommandPalette() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Abrir menu de comando"
-        className="fixed bottom-5 right-5 z-40 flex items-center gap-2 rounded-full border border-white/10 bg-black/40 backdrop-blur-md px-3.5 py-2 font-mono text-[11px] text-white/50 hover:text-white hover:border-[var(--accent-primary)]/40 transition-colors"
+        className="fixed bottom-5 left-5 z-40 flex items-center gap-2 rounded-full border border-white/10 bg-black/40 backdrop-blur-md px-3.5 py-2 font-mono text-[11px] text-white/50 hover:text-white hover:border-[var(--accent-primary)]/40 transition-colors"
       >
         <Search size={13} />
         <span className="hidden sm:inline">⌘K</span>
