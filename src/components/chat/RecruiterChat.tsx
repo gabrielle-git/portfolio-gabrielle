@@ -11,6 +11,17 @@ const SAUDACAO: Mensagem = {
     "Oi! 👋 Sou a assistente da Gabrielle. Pode me perguntar sobre a experiência, os projetos ou as habilidades dela.",
 };
 
+// Renderiza **negrito** (as quebras de linha ficam por conta do whitespace-pre-wrap).
+function formatar(texto: string) {
+  return texto.split(/(\*\*[^*]+\*\*)/g).map((parte, i) =>
+    parte.startsWith("**") && parte.endsWith("**") ? (
+      <strong key={i}>{parte.slice(2, -2)}</strong>
+    ) : (
+      <span key={i}>{parte}</span>
+    )
+  );
+}
+
 export function RecruiterChat() {
   const [aberto, setAberto] = useState(false);
   const [mensagens, setMensagens] = useState<Mensagem[]>([SAUDACAO]);
@@ -61,7 +72,6 @@ export function RecruiterChat() {
 
   return (
     <>
-      {/* Botão flutuante */}
       {!aberto && (
         <button
           onClick={() => setAberto(true)}
@@ -73,10 +83,8 @@ export function RecruiterChat() {
         </button>
       )}
 
-      {/* Painel */}
       {aberto && (
         <div className="fixed bottom-5 right-5 z-50 flex h-[min(70vh,520px)] w-[min(92vw,380px)] flex-col overflow-hidden rounded-2xl border border-border-default bg-bg-secondary shadow-2xl">
-          {/* Header */}
           <div className="flex items-center justify-between border-b border-border-default px-4 py-3">
             <div className="flex items-center gap-2">
               <span className="relative flex h-2 w-2">
@@ -99,8 +107,10 @@ export function RecruiterChat() {
             </button>
           </div>
 
-          {/* Mensagens */}
-          <div className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-3">
+          <div
+            data-lenis-prevent
+            className="flex-1 overflow-y-auto overscroll-contain px-4 py-4 flex flex-col gap-3"
+          >
             {mensagens.map((m, i) => (
               <div
                 key={i}
@@ -110,7 +120,7 @@ export function RecruiterChat() {
                     : "self-start bg-white/[0.04] text-fg/90 border border-border-default"
                 }`}
               >
-                {m.content}
+                {m.role === "assistant" ? formatar(m.content) : m.content}
               </div>
             ))}
             {carregando && (
@@ -123,7 +133,6 @@ export function RecruiterChat() {
             <div ref={fimRef} />
           </div>
 
-          {/* Input */}
           <div className="border-t border-border-default p-3 flex items-end gap-2">
             <textarea
               value={texto}
