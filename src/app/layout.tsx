@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Pixelify_Sans } from "next/font/google";
+import { Geist, Geist_Mono, Syne } from "next/font/google";
 import "./globals.css";
-import { CommandPalette } from "@/components/ui/CommandPalette";
+import { Navbar } from "@/components/ui/Navbar";
+import { PageBackground } from "@/components/effects/PageBackground";
 import { VisitTracker } from "@/components/analytics/VisitTracker";
-import { RecruiterChat } from "@/components/chat/RecruiterChat";
+import { TerminalPanel } from "@/components/terminal/TerminalPanel";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,10 +16,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const pixelifySans = Pixelify_Sans({
+const syne = Syne({
   variable: "--font-pixel",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -61,12 +62,13 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${pixelifySans.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${syne.variable} antialiased`}
       >
+        <PageBackground />
+        <Navbar />
         {children}
-        <CommandPalette />
         <VisitTracker />
-        <RecruiterChat />
+        <TerminalPanel />
       </body>
     </html>
   );

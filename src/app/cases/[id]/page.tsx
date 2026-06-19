@@ -50,9 +50,9 @@ export default async function CasePage({
   const status = STATUS_CONFIG[project.status];
 
   return (
-    <main className="relative min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
+    <main className="relative min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] pt-14">
       {/* Barra superior fixa com voltar */}
-      <div className="sticky top-0 z-30 backdrop-blur bg-[var(--bg-primary)]/80 border-b border-white/6">
+      <div className="sticky top-14 z-30 backdrop-blur bg-[var(--bg-primary)]/80 border-b border-white/6">
         <div className="max-w-4xl mx-auto px-6 py-4">
           <Link
             href="/#cases"
