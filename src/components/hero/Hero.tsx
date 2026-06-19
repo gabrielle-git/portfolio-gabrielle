@@ -4,13 +4,13 @@ import { motion } from "framer-motion";
 import { ArrowDown, Download } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { AuroraBackground } from "@/components/effects/AuroraBackground";
-import { HeroAvatar } from "./HeroAvatar";
+import { HeroSphere } from "./HeroSphere";
 import { HeroIdentity } from "./HeroIdentity";
 import { HeroStatusBar } from "./HeroStatusBar";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden">
+    <section className="relative min-h-screen flex flex-col overflow-hidden pt-14">
       <AuroraBackground />
 
       {/* scan de boot — varre o hero uma vez na carga */}
@@ -52,7 +52,7 @@ export function Hero() {
           </div>
 
           <div className="order-1 lg:order-2">
-            <HeroAvatar />
+            <HeroSphere />
           </div>
         </div>
       </div>

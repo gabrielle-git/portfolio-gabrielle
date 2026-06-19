@@ -4,15 +4,9 @@ import { motion } from "framer-motion";
 import { Typewriter } from "@/components/effects/Typewriter";
 
 const STACK_GROUPS = [
-  { label: "backend", items: ["Node.js", "TypeScript", "Python", "Flask"] },
-  { label: "infra", items: ["Docker", "Linux", "CI/CD", "GitHub Actions"] },
-  {
-    label: "ia & automação",
-    items: ["n8n", "Make", "Gemini", "Ollama", "Claude", "Eng. de Prompt"],
-  },
-  { label: "frontend", items: ["Next.js", "React", "Tailwind", "Vite"] },
-  { label: "dados", items: ["SQL", "Supabase", "Firebase", "Pandas"] },
-  { label: "tools", items: ["Cursor", "GitHub", "Obsidian", "Notion"] },
+  { label: "server", items: ["Node.js", "TypeScript", "Python", "Docker"] },
+  { label: "ia", items: ["n8n", "Gemini", "Claude", "Ollama"] },
+  { label: "client", items: ["Next.js", "React", "Tailwind", "Framer"] },
 ];
 
 const NAME_FIRST = "Gabrielle";
@@ -34,7 +28,7 @@ export function HeroIdentity() {
 
       {/* nome com glow */}
       <h1
-        className="text-5xl md:text-6xl xl:text-7xl font-bold leading-[0.95] tracking-tight whitespace-nowrap"
+        className="text-5xl md:text-6xl xl:text-7xl font-extrabold leading-[0.95] tracking-[-0.02em] whitespace-nowrap"
         style={{
           fontFamily: "var(--font-pixel)",
           filter: "drop-shadow(0 0 26px rgba(139,92,246,0.45))",
@@ -80,7 +74,7 @@ export function HeroIdentity() {
         <span className="text-fg-dim font-light">·</span>
         <span className="text-fg-muted text-base font-light">Backend</span>
         <span className="text-fg-dim font-light">·</span>
-        <span className="text-fg-muted text-base font-light">Automação</span>
+        <span className="text-fg-muted text-base font-light">Frontend</span>
         <span className="text-fg-dim font-light">·</span>
         <span className="text-fg-muted text-base font-light">IA</span>
       </motion.div>
@@ -93,9 +87,9 @@ export function HeroIdentity() {
         transition={{ duration: 0.5, delay: 0.6 }}
       >
         <Typewriter
-          text="Construo automações, integrações com IA e sistemas críticos."
+          text="Do banco de dados à interface — backend sólido, automações inteligentes e frontend que impressiona."
           delay={700}
-          speed={28}
+          speed={22}
         />
       </motion.div>
 
