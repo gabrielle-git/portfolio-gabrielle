@@ -16,7 +16,7 @@ import {
 
 const EMAIL = "gabrielle.campelo.dev@gmail.com";
 const GITHUB = "https://github.com/gabrielle-git";
-const LINKEDIN = "https://www.linkedin.com/in/helena-gabrielle-da-cunha-campêlo/";
+const LINKEDIN = "https://www.linkedin.com/in/helena-gabrielle-da-cunha-camp%C3%AAlo/";
 
 type Cmd = {
   id: string;

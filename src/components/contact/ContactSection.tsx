@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { supabase } from "@/lib/supabase";
 
 const WEB3FORMS_ACCESS_KEY = "67de06b9-5cbb-4844-ba26-478f9f1f336f";
-const LINKEDIN_URL = "https://www.linkedin.com/in/helena-gabrielle-da-cunha-campêlo/";
+const LINKEDIN_URL = "https://www.linkedin.com/in/helena-gabrielle-da-cunha-camp%C3%AAlo/";
 const GITHUB_URL = "https://github.com/gabrielle-git";
 const EMAIL = "gabrielle.campelo.dev@gmail.com";
 

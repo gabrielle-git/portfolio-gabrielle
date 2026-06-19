@@ -50,7 +50,7 @@ export function Navbar() {
           ))}
 
           <a
-            href="https://github.com/gabriellecampelo"
+            href="https://github.com/gabrielle-git"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"

@@ -67,7 +67,7 @@ const HELP_LINES: Line[] = [
 ];
 
 const WHOIS_LINES: Line[] = [
-  { type: "dim",     content: "─── whois gabriellecampelo ──────────" },
+  { type: "dim",     content: "─── whois gabrielle-git ─────────────" },
   { type: "success", content: "  Gabrielle Campelo" },
   { type: "output",  content: "  Engenheira de Software" },
   { type: "output",  content: "  Backend · Frontend · IA · Automação" },
@@ -252,13 +252,13 @@ export function TerminalPanel() {
 
         case "github":
         case "gh":
-          window.open("https://github.com/gabriellecampelo", "_blank");
+          window.open("https://github.com/gabrielle-git", "_blank");
           add({ type: "success", content: "  ↗ abrindo GitHub..." });
           break;
 
         case "linkedin":
         case "li":
-          window.open("https://linkedin.com/in/gabriellecampelo", "_blank");
+          window.open("https://www.linkedin.com/in/helena-gabrielle-da-cunha-camp%C3%AAlo/", "_blank");
           add({ type: "success", content: "  ↗ abrindo LinkedIn..." });
           break;
 
