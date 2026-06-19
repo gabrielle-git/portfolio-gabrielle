@@ -188,6 +188,30 @@ body {
   }
 }
 
+@keyframes blobFloat1 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  25%       { transform: translate(60px, 80px) scale(1.08); }
+  50%       { transform: translate(120px, 30px) scale(0.96); }
+  75%       { transform: translate(40px, 110px) scale(1.04); }
+}
+
+@keyframes blobFloat2 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33%       { transform: translate(-90px, -70px) scale(1.12); }
+  66%       { transform: translate(50px, -110px) scale(0.88); }
+}
+
+@keyframes blobFloat3 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  40%       { transform: translate(-70px, 60px) scale(1.1); }
+  80%       { transform: translate(50px, -40px) scale(0.92); }
+}
+
+@keyframes blobFloat4 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  50%       { transform: translate(-80px, 60px) scale(1.06); }
+}
+
 /* ---------- Utilities ---------- */
 
 .text-gradient {
