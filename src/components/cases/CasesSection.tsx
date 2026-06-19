@@ -29,7 +29,7 @@ export function CasesSection() {
         >
           <span className="flex items-center gap-2 text-xs font-mono text-[var(--accent-primary)] tracking-widest uppercase">
             <span className="inline-block w-6 h-px bg-[var(--accent-primary)] shadow-[0_0_8px_var(--accent-glow)]" />
-            02 / cases
+            03 / cases
           </span>
           <h2 className="text-3xl sm:text-5xl font-semibold text-[var(--text-primary)] leading-[1.05] tracking-tight">
             O que eu construí
