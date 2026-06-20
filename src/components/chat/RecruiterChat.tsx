@@ -11,7 +11,13 @@ const SAUDACAO: Mensagem = {
     "Oi! 👋 Sou a assistente da Gabrielle. Pode me perguntar sobre a experiência, os projetos ou as habilidades dela.",
 };
 
-// Renderiza **negrito** (as quebras de linha ficam por conta do whitespace-pre-wrap).
+const SUGESTOES = [
+  "Quais os principais projetos dela?",
+  "Qual a stack que ela domina?",
+  "Que experiência ela tem com IA?",
+  "Ela está disponível pra trabalhar?",
+];
+
 function formatar(texto: string) {
   return texto.split(/(\*\*[^*]+\*\*)/g).map((parte, i) =>
     parte.startsWith("**") && parte.endsWith("**") ? (
@@ -33,8 +39,8 @@ export function RecruiterChat() {
     fimRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [mensagens, carregando, aberto]);
 
-  const enviar = async () => {
-    const pergunta = texto.trim();
+  const enviar = async (perguntaParam?: string) => {
+    const pergunta = (perguntaParam ?? texto).trim();
     if (!pergunta || carregando) return;
 
     const novas: Mensagem[] = [...mensagens, { role: "user", content: pergunta }];
@@ -123,6 +129,21 @@ export function RecruiterChat() {
                 {m.role === "assistant" ? formatar(m.content) : m.content}
               </div>
             ))}
+
+            {mensagens.length === 1 && !carregando && (
+              <div className="flex flex-col gap-2 pt-1">
+                {SUGESTOES.map((s) => (
+                  <button
+                    key={s}
+                    onClick={() => enviar(s)}
+                    className="self-start text-left text-xs rounded-lg border border-border-default bg-white/[0.03] px-3 py-2 text-fg/80 hover:border-border-accent hover:text-fg transition-colors"
+                  >
+                    {s}
+                  </button>
+                ))}
+              </div>
+            )}
+
             {carregando && (
               <div className="self-start flex gap-1 rounded-xl border border-border-default bg-white/[0.04] px-3 py-3">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent/70 animate-bounce [animation-delay:-0.2s]" />
@@ -144,7 +165,7 @@ export function RecruiterChat() {
               className="flex-1 resize-none rounded-lg border border-border-default bg-bg-primary px-3 py-2 text-sm text-fg placeholder:text-fg-dim outline-none focus:border-border-accent max-h-24"
             />
             <button
-              onClick={enviar}
+              onClick={() => enviar()}
               disabled={carregando || !texto.trim()}
               className="shrink-0 rounded-lg border border-border-accent bg-accent/15 p-2 text-accent hover:bg-accent/25 transition-colors disabled:opacity-40"
               aria-label="Enviar pergunta"
