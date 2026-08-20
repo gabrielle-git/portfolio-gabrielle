@@ -1,0 +1,95 @@
+/**
+ * V3 design tokens — scoped to `.v3Root`, never touching the global `:root`
+ * used by the legacy (dark) site. See docs/V3-MIGRATION-PLAN.md section 2A:
+ * new components use CSS Modules + custom properties; Tailwind/legacy tokens
+ * stay untouched.
+ *
+ * Palette is a first-pass reading of the approved Figma frame (V3 —
+ * Interactive Portfolio / HOME, node 8:2): cream background, deep purple,
+ * blue, lavender, blush, generous whitespace. The Figma file has no color
+ * variables defined on this node (confirmed via get_variable_defs), so exact
+ * hex values are hand-picked from the rendered screenshot rather than
+ * sampled from Figma fills — flagged as a deliberate approximation to
+ * refine once pixel-exact values are available.
+ */
+
+.v3Root {
+  color-scheme: light;
+
+  /* Backgrounds */
+  --v3-bg: #faf6f1;
+  --v3-bg-raised: #ffffff;
+  --v3-bg-sunken: #f2ece3;
+
+  /* Ink / text */
+  --v3-ink: #241c30;
+  --v3-ink-muted: #5b5468;
+  --v3-ink-dim: #8b8496;
+
+  /* Accents */
+  --v3-purple: #3d2a5c;
+  --v3-purple-deep: #241645;
+  --v3-blue: #35597d;
+  --v3-lavender: #c9bce8;
+  --v3-lavender-soft: #e6def6;
+  --v3-blush: #f0cdd3;
+  --v3-blush-soft: #f8e4e6;
+
+  /* Borders */
+  --v3-border: rgba(36, 28, 48, 0.1);
+  --v3-border-strong: rgba(36, 28, 48, 0.22);
+
+  /* Inspect mode — the one deliberately dark surface within the light system */
+  --v3-inspect-bg: #241c30;
+  --v3-inspect-ink: #f3eef8;
+  --v3-inspect-ink-muted: #b6acc7;
+  --v3-inspect-border: rgba(243, 238, 248, 0.14);
+  --v3-inspect-accent: #c9bce8;
+
+  /* Typography */
+  --v3-font-display: var(--font-pixel), "Syne", var(--font-sans), sans-serif;
+  --v3-font-body: var(--font-sans), system-ui, sans-serif;
+  --v3-font-mono: var(--font-mono), "JetBrains Mono", monospace;
+
+  /* Spacing (generous, editorial rhythm) */
+  --v3-space-xs: 0.5rem;
+  --v3-space-sm: 0.75rem;
+  --v3-space-md: 1.25rem;
+  --v3-space-lg: 2rem;
+  --v3-space-xl: 3.5rem;
+  --v3-space-2xl: 5.5rem;
+  --v3-space-3xl: 8rem;
+
+  /* Radius */
+  --v3-radius-sm: 6px;
+  --v3-radius-md: 12px;
+  --v3-radius-lg: 20px;
+  --v3-radius-full: 999px;
+
+  /* Shadows */
+  --v3-shadow-sm: 0 1px 2px rgba(36, 28, 48, 0.06);
+  --v3-shadow-md: 0 8px 24px rgba(36, 28, 48, 0.08);
+  --v3-shadow-lg: 0 24px 64px rgba(36, 28, 48, 0.12);
+
+  /* Motion */
+  --v3-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --v3-duration-fast: 180ms;
+  --v3-duration-base: 320ms;
+  --v3-duration-slow: 560ms;
+
+  background: var(--v3-bg);
+  color: var(--v3-ink);
+  min-height: 100vh;
+  font-family: var(--v3-font-body);
+}
+
+.v3Root ::selection {
+  background: var(--v3-lavender);
+  color: var(--v3-purple-deep);
+}
+
+.v3Root :focus-visible {
+  outline: 2px solid var(--v3-purple);
+  outline-offset: 2px;
+  border-radius: var(--v3-radius-sm);
+}

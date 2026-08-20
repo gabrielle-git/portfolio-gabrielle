@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { supabase } from "@/lib/supabase";
+import { getSupabaseClient } from "@/lib/supabase";
 
 const WEB3FORMS_ACCESS_KEY = "67de06b9-5cbb-4844-ba26-478f9f1f336f";
 const LINKEDIN_URL = "https://www.linkedin.com/in/helena-gabrielle-da-cunha-camp%C3%AAlo/";
@@ -69,7 +69,7 @@ export function ContactSection() {
     setStatus("sending");
 
     // 1) Salva no Supabase (RLS: insert público, leitura bloqueada)
-    const dbPromise = supabase.from("mensagens").insert({ nome, email, mensagem });
+    const dbPromise = getSupabaseClient().from("mensagens").insert({ nome, email, mensagem });
 
     // 2) Notifica por email (Web3Forms) — bônus, não bloqueia
     const emailPromise = fetch("https://api.web3forms.com/submit", {

@@ -1,0 +1,193 @@
+.inspect {
+  background: var(--v3-inspect-bg);
+  color: var(--v3-inspect-ink);
+  padding: var(--v3-space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--v3-space-lg);
+}
+
+.flowRow {
+  display: flex;
+  align-items: stretch;
+  gap: var(--v3-space-xs);
+  flex-wrap: wrap;
+}
+
+.flowStep {
+  flex: 1 1 8rem;
+  border: 1px solid var(--v3-inspect-border);
+  border-radius: var(--v3-radius-sm);
+  padding: var(--v3-space-sm);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.flowLabel {
+  font-family: var(--v3-font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  display: block;
+}
+
+.flowDetail {
+  font-size: 0.6875rem;
+  color: var(--v3-inspect-ink-muted);
+  line-height: 1.4;
+  display: block;
+  margin-top: 0.25rem;
+}
+
+.flowArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--v3-inspect-ink-muted);
+  font-size: 1.1rem;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 640px) {
+  .flowRow {
+    flex-direction: column;
+  }
+
+  .flowArrow {
+    transform: rotate(90deg);
+  }
+}
+
+.secureBadge {
+  align-self: flex-start;
+  font-family: var(--v3-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  background: var(--v3-inspect-accent);
+  color: var(--v3-purple-deep);
+  border-radius: var(--v3-radius-full);
+  padding: 0.35rem 0.8rem;
+}
+
+.domainRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-family: var(--v3-font-mono);
+  font-size: 0.875rem;
+}
+
+.domainNode {
+  color: var(--v3-inspect-ink);
+  border-bottom: 1px dashed var(--v3-inspect-border);
+  padding-bottom: 0.15rem;
+}
+
+.domainArrow {
+  color: var(--v3-inspect-ink-muted);
+}
+
+.rolesRow {
+  display: flex;
+  gap: var(--v3-space-sm);
+  flex-wrap: wrap;
+}
+
+.roleChip {
+  border: 1px solid var(--v3-inspect-border);
+  border-radius: var(--v3-radius-sm);
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8125rem;
+  display: flex;
+  gap: 0.4rem;
+  align-items: baseline;
+}
+
+.roleLabel {
+  font-family: var(--v3-font-mono);
+  font-weight: 600;
+  color: var(--v3-inspect-accent);
+}
+
+.roleDescription {
+  color: var(--v3-inspect-ink-muted);
+}
+
+.grid {
+  display: grid;
+  gap: var(--v3-space-md);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  }
+}
+
+.codeBlock {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--v3-inspect-border);
+  border-radius: var(--v3-radius-sm);
+  padding: var(--v3-space-md);
+  overflow-x: auto;
+}
+
+.codeSource {
+  display: block;
+  font-family: var(--v3-font-mono);
+  font-size: 0.6875rem;
+  color: var(--v3-inspect-ink-muted);
+  margin-bottom: 0.5rem;
+}
+
+.codeSource::before {
+  content: "// ";
+}
+
+.codePre {
+  margin: 0;
+  font-family: var(--v3-font-mono);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--v3-inspect-ink);
+  white-space: pre;
+}
+
+.provesBox {
+  border: 1px solid var(--v3-inspect-border);
+  border-radius: var(--v3-radius-sm);
+  padding: var(--v3-space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--v3-space-sm);
+}
+
+.provesLabel {
+  font-family: var(--v3-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--v3-inspect-ink-muted);
+}
+
+.provesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.provesItem {
+  font-size: 0.8125rem;
+  border: 1px solid var(--v3-inspect-border);
+  border-radius: var(--v3-radius-full);
+  padding: 0.3rem 0.7rem;
+}
+
+.note {
+  font-size: 0.8125rem;
+  color: var(--v3-inspect-ink-muted);
+  line-height: 1.5;
+  margin: 0;
+}

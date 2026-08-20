@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Syne } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/ui/Navbar";
-import { PageBackground } from "@/components/effects/PageBackground";
 import { VisitTracker } from "@/components/analytics/VisitTracker";
-import { TerminalPanel } from "@/components/terminal/TerminalPanel";
+import { LegacyChromeEnd, LegacyChromeStart } from "@/components/chrome/LegacyChrome";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -64,11 +62,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${syne.variable} antialiased`}
       >
-        <PageBackground />
-        <Navbar />
+        <LegacyChromeStart />
         {children}
         <VisitTracker />
-        <TerminalPanel />
+        <LegacyChromeEnd />
       </body>
     </html>
   );
