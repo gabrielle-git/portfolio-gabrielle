@@ -1,0 +1,43 @@
+/* Shared infrastructure for the three Selected Systems — headers only.
+   Each system's body is intentionally its own component/CSS, not this file. */
+
+.system {
+  padding: var(--v3-space-xl) var(--v3-space-lg);
+  max-width: 84rem;
+  margin: 0 auto;
+  border-top: 1px solid var(--v3-border);
+}
+
+.head {
+  margin-bottom: var(--v3-space-lg);
+}
+
+.eyebrow {
+  display: block;
+  font-family: var(--v3-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--v3-ink-dim);
+  margin-bottom: var(--v3-space-xs);
+}
+
+.title {
+  font-family: var(--v3-font-serif);
+  font-weight: 600;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  color: var(--v3-ink);
+  margin: 0 0 0.35rem;
+}
+
+.tagline {
+  font-size: 1rem;
+  color: var(--v3-ink-muted);
+  margin: 0;
+  max-width: 44rem;
+}
+
+.panel {
+  border-radius: var(--v3-radius-lg);
+  border: 1px solid var(--v3-border);
+  overflow: hidden;
+}

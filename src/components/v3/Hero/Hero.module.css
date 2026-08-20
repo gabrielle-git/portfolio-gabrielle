@@ -80,8 +80,7 @@
 }
 
 .ctaPrimary,
-.ctaGhost,
-.ctaSecondaryInert {
+.ctaGhost {
   font-family: var(--v3-font-mono);
   font-size: 0.75rem;
   letter-spacing: 0.03em;
@@ -113,11 +112,6 @@
   background: var(--v3-border);
 }
 
-.ctaSecondaryInert {
-  color: var(--v3-ink-dim);
-  border-color: var(--v3-border);
-  cursor: default;
-}
 
 .photoCol {
   min-width: 0;

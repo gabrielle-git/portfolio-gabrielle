@@ -1,0 +1,139 @@
+.body {
+  padding: var(--v3-space-lg) 0 0;
+  display: grid;
+  gap: var(--v3-space-lg);
+}
+
+@media (min-width: 900px) {
+  .body {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+.statusPanel {
+  border: 1px solid var(--v3-border);
+  border-radius: var(--v3-radius-lg);
+  padding: var(--v3-space-lg);
+  background: var(--v3-bg-raised);
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: var(--v3-space-sm);
+}
+
+.dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.dotOnline {
+  background: #3d7a52;
+}
+
+.dotOffline {
+  background: #a83d55;
+}
+
+.dotRestore {
+  background: var(--v3-blue);
+}
+
+.statusLabel {
+  font-family: var(--v3-font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--v3-ink);
+}
+
+.statusTitle {
+  font-family: var(--v3-font-serif);
+  font-weight: 600;
+  font-size: 1.375rem;
+  color: var(--v3-ink);
+  margin: 0 0 0.4rem;
+}
+
+.statusDetail {
+  font-size: 0.9375rem;
+  color: var(--v3-ink-muted);
+  line-height: 1.55;
+  margin: 0 0 var(--v3-space-md);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.controlBtn {
+  font-family: var(--v3-font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.55rem 0.9rem;
+  border-radius: var(--v3-radius-sm);
+  border: 1px solid var(--v3-border-strong);
+  background: var(--v3-bg-raised);
+  color: var(--v3-ink-muted);
+  cursor: pointer;
+  transition: background var(--v3-duration-fast) var(--v3-ease), color var(--v3-duration-fast) var(--v3-ease);
+}
+
+.controlBtn:hover {
+  color: var(--v3-ink);
+}
+
+.controlActive {
+  background: var(--v3-purple);
+  border-color: var(--v3-purple);
+  color: var(--v3-bg-raised);
+}
+
+.inspect {
+  background: var(--v3-inspect-bg);
+  color: var(--v3-inspect-ink);
+  border-radius: var(--v3-radius-lg);
+  padding: var(--v3-space-lg);
+}
+
+.inspectFlow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: var(--v3-space-md);
+}
+
+.inspectStep {
+  font-family: var(--v3-font-mono);
+  font-size: 0.8125rem;
+}
+
+.inspectLabel {
+  font-weight: 600;
+  color: var(--v3-inspect-accent);
+}
+
+.inspectDetail {
+  color: var(--v3-inspect-ink-muted);
+  display: block;
+}
+
+.factsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.fact {
+  font-size: 0.75rem;
+  border: 1px solid var(--v3-inspect-border);
+  border-radius: var(--v3-radius-sm);
+  padding: 0.3rem 0.6rem;
+}

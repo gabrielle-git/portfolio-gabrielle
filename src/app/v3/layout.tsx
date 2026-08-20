@@ -1,4 +1,6 @@
 import { Fraunces } from "next/font/google";
+import { CommandPaletteProvider } from "@/components/v3/CommandPalette/CommandPaletteContext";
+import { CommandPalette } from "@/components/v3/CommandPalette/CommandPalette";
 
 const fraunces = Fraunces({
   variable: "--font-serif",
@@ -10,10 +12,20 @@ const fraunces = Fraunces({
 /**
  * Route-scoped layout for /v3 only — does not touch the shared root layout.
  * Loads an editorial serif (Fraunces) so V3 has typographic contrast instead
- * of Syne carrying every display role alone (correction pass, "TIPOGRAFIA").
- * Fraunces at normal style/medium weight reads as contemporary editorial,
- * not wedding-invite or fashion-portfolio decorative.
+ * of Syne carrying every display role alone.
+ *
+ * CommandPaletteProvider/CommandPalette live here (not in page.tsx) so the
+ * palette is reachable from anywhere on /v3 — Header's ⌘K trigger and
+ * Under the Hood's "OPEN COMMAND MENU" link both call useCommandPalette()
+ * from wherever they are in the tree.
  */
 export default function V3Layout({ children }: { children: React.ReactNode }) {
-  return <div className={fraunces.variable}>{children}</div>;
+  return (
+    <div className={fraunces.variable}>
+      <CommandPaletteProvider>
+        {children}
+        <CommandPalette />
+      </CommandPaletteProvider>
+    </div>
+  );
 }

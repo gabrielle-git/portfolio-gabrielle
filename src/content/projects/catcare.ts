@@ -143,6 +143,7 @@ export const catCareInspect = {
 export const catCare: ProjectContent = {
   id: "catcare",
   status: "verified",
+  kind: "product",
   /**
    * "Multi-pet Care" is a provisional, descriptive display name — not the
    * final commercial brand. The product supports multiple species, not just

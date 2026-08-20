@@ -1,0 +1,114 @@
+.body {
+  padding: var(--v3-space-lg) 0 0;
+  display: grid;
+  gap: var(--v3-space-lg);
+}
+
+@media (min-width: 900px) {
+  .body {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+.graph {
+  border: 1px solid var(--v3-border);
+  border-radius: var(--v3-radius-lg);
+  padding: var(--v3-space-lg);
+  background: var(--v3-bg-raised);
+}
+
+.nodeRow {
+  display: flex;
+  flex-direction: column;
+}
+
+.nodeBtn {
+  text-align: left;
+  border: 1px solid var(--v3-border);
+  border-radius: var(--v3-radius-md);
+  padding: 0.85rem 1rem;
+  background: var(--v3-bg-raised);
+  font-family: var(--v3-font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--v3-ink-muted);
+  cursor: pointer;
+  transition: background var(--v3-duration-fast) var(--v3-ease), color var(--v3-duration-fast) var(--v3-ease), border-color var(--v3-duration-fast) var(--v3-ease);
+}
+
+.nodeBtn:hover {
+  border-color: var(--v3-border-strong);
+}
+
+.nodeActive {
+  background: var(--v3-purple);
+  border-color: var(--v3-purple);
+  color: var(--v3-bg-raised);
+}
+
+.connector {
+  display: flex;
+  justify-content: center;
+  color: var(--v3-ink-dim);
+  font-size: 1rem;
+  padding: 0.15rem 0;
+}
+
+.detail {
+  border: 1px solid var(--v3-border);
+  border-radius: var(--v3-radius-lg);
+  padding: var(--v3-space-lg);
+  background: var(--v3-bg-raised);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.detailLabel {
+  font-family: var(--v3-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--v3-ink-dim);
+  margin-bottom: 0.4rem;
+}
+
+.detailBody {
+  font-size: 0.9375rem;
+  color: var(--v3-ink-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.inspect {
+  grid-column: 1 / -1;
+  background: var(--v3-inspect-bg);
+  color: var(--v3-inspect-ink);
+  border-radius: var(--v3-radius-lg);
+  padding: var(--v3-space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inspectHeading {
+  font-family: var(--v3-font-serif);
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin: 0 0 0.4rem;
+}
+
+.inspectStep {
+  font-family: var(--v3-font-mono);
+  font-size: 0.8125rem;
+}
+
+.inspectLabel {
+  font-weight: 600;
+  color: var(--v3-inspect-accent);
+}
+
+.inspectDetail {
+  color: var(--v3-inspect-ink-muted);
+  display: block;
+}

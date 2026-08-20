@@ -1,0 +1,118 @@
+.section {
+  padding: var(--v3-space-xl) var(--v3-space-lg);
+  max-width: 84rem;
+  margin: 0 auto;
+  border-top: 1px solid var(--v3-border);
+}
+
+.head {
+  margin-bottom: var(--v3-space-lg);
+}
+
+.eyebrow {
+  display: block;
+  font-family: var(--v3-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--v3-ink-dim);
+  margin-bottom: var(--v3-space-xs);
+}
+
+.title {
+  font-family: var(--v3-font-serif);
+  font-weight: 600;
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  color: var(--v3-ink);
+  margin: 0 0 0.35rem;
+}
+
+.subtitle {
+  font-family: var(--v3-font-mono);
+  font-size: 0.8125rem;
+  color: var(--v3-ink-muted);
+  margin: 0;
+}
+
+.maps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--v3-space-lg);
+  margin-bottom: var(--v3-space-lg);
+}
+
+@media (min-width: 800px) {
+  .maps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.map {
+  border: 1px solid var(--v3-border);
+  border-radius: var(--v3-radius-lg);
+  padding: var(--v3-space-md);
+}
+
+.mapChain {
+  display: flex;
+  flex-direction: column;
+}
+
+.mapNode {
+  padding: 0.6rem 0;
+}
+
+.mapLabel {
+  font-family: var(--v3-font-mono);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  color: var(--v3-ink);
+  display: block;
+}
+
+.mapDetail {
+  font-size: 0.8125rem;
+  color: var(--v3-ink-muted);
+}
+
+.mapArrow {
+  color: var(--v3-ink-dim);
+  padding-left: 0.1rem;
+}
+
+.stackRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: var(--v3-space-md);
+}
+
+.stackItem {
+  font-family: var(--v3-font-mono);
+  font-size: 0.75rem;
+  color: var(--v3-ink-muted);
+  border: 1px solid var(--v3-border-strong);
+  border-radius: var(--v3-radius-sm);
+  padding: 0.3rem 0.6rem;
+}
+
+.linkRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--v3-space-md);
+}
+
+.link,
+.linkBtn {
+  font-family: var(--v3-font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--v3-purple);
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--v3-purple);
+  padding-bottom: 0.1rem;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  cursor: pointer;
+}

@@ -3,18 +3,29 @@ import "@/styles/v3-tokens.css";
 import { Header } from "@/components/v3/Header/Header";
 import { Hero } from "@/components/v3/Hero/Hero";
 import { FeaturedCase } from "@/components/v3/FeaturedCase/FeaturedCase";
+import { SelectedSystems } from "@/components/v3/SelectedSystems/SelectedSystems";
+import { Experience } from "@/components/v3/Experience/Experience";
+import { About } from "@/components/v3/About/About";
+import { AskMyPortfolio } from "@/components/v3/AskMyPortfolio/AskMyPortfolio";
+import { Contact } from "@/components/v3/Contact/Contact";
+import { UnderTheHood } from "@/components/v3/UnderTheHood/UnderTheHood";
+import { Footer } from "@/components/v3/Footer/Footer";
 import styles from "./page.module.css";
 
 /**
- * V3 preview route — Fase 1 scope only (Header, Hero, CatCare Featured Case
- * with Visual↔Inspect). Deliberately noindex: this is a work-in-progress
- * surface, not meant to compete with / in search results while incomplete.
- * See docs/V3-MIGRATION-PLAN.md section 13-A/B.
+ * V3 preview route — Sprint V3 "complete core experience". Deliberately
+ * noindex: work-in-progress surface, not meant to compete with / in search
+ * results. See docs/V3-MIGRATION-PLAN.md.
  *
- * Fase 1.2: InteractionIndex is deliberately NOT rendered here — a
- * recruiter should reach real work (the Featured Case) immediately after
- * the Hero. The component is preserved (src/components/v3/InteractionIndex)
- * for reuse near "Under the Hood" in a later phase, not deleted.
+ * Home order: Header → Hero → 01 Multi-pet Care (Visual↔Inspect) →
+ * 02 Selected Systems (IML/RELPREV/Registro) → 03 Experience → 04 About →
+ * 05 Ask My Portfolio → 06 Contact → 07 Under the Hood (incl.
+ * InteractionIndex, reused here rather than between Hero and projects) →
+ * Footer.
+ *
+ * Still not implemented (next phase): nothing removed from scope here, but
+ * IML/RELPREV/Registro won't get a full case page (`/cases/[id]`-equivalent
+ * on V3) yet — only their Home-section presence.
  */
 export const metadata: Metadata = {
   title: "V3 preview · Gabrielle Campelo",
@@ -29,7 +40,14 @@ export default function V3Page() {
       <main>
         <Hero />
         <FeaturedCase />
+        <SelectedSystems />
+        <Experience />
+        <About />
+        <AskMyPortfolio />
+        <Contact />
+        <UnderTheHood />
       </main>
+      <Footer />
     </div>
   );
 }

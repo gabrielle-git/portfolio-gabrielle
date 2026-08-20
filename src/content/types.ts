@@ -42,11 +42,13 @@ export interface ProjectLinks {
   repo?: string;
 }
 
-/** Tags used by local/fallback search (see Fase 4 — Portfolio AI). */
+/** Tags used by local/fallback search and Ask My Portfolio. */
 export type ProjectTag =
   | "python"
   | "typescript"
+  | "react"
   | "nextjs"
+  | "vite"
   | "supabase"
   | "postgresql"
   | "rls"
@@ -55,11 +57,16 @@ export type ProjectTag =
   | "backend"
   | "frontend"
   | "offline-first"
+  | "security"
   | "ai";
+
+/** How a project is presented — each kind gets its own component, not a shared ProjectCard. */
+export type ProjectKind = "product" | "pipeline" | "resilience" | "relational";
 
 export interface ProjectContent {
   id: string;
   status: ContentStatus;
+  kind: ProjectKind;
   title: string;
   eyebrow: string;
   tagline: string;

@@ -15,11 +15,12 @@ import styles from "./Hero.module.css";
  * of them in favor of a flat, editorial frame. See
  * docs/V3-MIGRATION-PLAN.md for the full before/after.
  *
- * Fase 1.2: "ASK MY PORTFOLIO" is removed from the composition entirely
- * (not just inert) — an unbuilt feature shouldn't occupy a CTA slot at all.
- * It comes back once Ask My Portfolio ships. Vertical space after the CTA
- * row is deliberately tight so the Featured Case starts entering the first
- * viewport on common desktop heights.
+ * Fase 1.2 removed "ASK MY PORTFOLIO" from the CTA row because that section
+ * didn't exist yet — an unbuilt feature shouldn't occupy a CTA slot. Sprint
+ * V3 restores it now that #ask-my-portfolio is real, as a plain anchor
+ * (same treatment as before), without otherwise touching the Hero layout —
+ * this sprint explicitly preserves Hero as approved. Vertical space after
+ * the CTA row stays tight so the Featured Case enters the first viewport.
  */
 export function Hero() {
   const prefersReducedMotion = useReducedMotion();
@@ -51,6 +52,9 @@ export function Hero() {
           <div className={styles.ctaRow}>
             <a href="#featured-case" className={styles.ctaPrimary}>
               {profile.cta.exploreSystems}
+            </a>
+            <a href="#ask-my-portfolio" className={styles.ctaGhost}>
+              {profile.cta.askPortfolio}
             </a>
             <a
               href={profile.links.github}
