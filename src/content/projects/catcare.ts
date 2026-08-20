@@ -38,7 +38,7 @@ import type {
  */
 export const catCareVisual = {
   demoBadge: "Demonstração",
-  homeLabel: "CATCARE / HOME",
+  homeLabel: "MULTI-PET / HOME",
   greeting: "Boa tarde, família.",
   subheading: "Um resumo tranquilo do que importa hoje.",
   pets: [
@@ -55,8 +55,8 @@ export const catCareVisual = {
   narrative: {
     title: "Cuidado multi-pet sem fragmentar a rotina.",
     beats: [
-      "Cuidar de mais de um gato ao mesmo tempo — saudável, idoso ou recém-nascido — dispersa informação em anotações soltas e conversas.",
-      "O CatCare junta saúde, peso, alimentação, despesas e memória num só lugar, com histórico por pet e por família.",
+      "Cuidar de mais de um pet ao mesmo tempo — em diferentes espécies, idades ou fases de cuidado — dispersa informações entre anotações, conversas e lembretes.",
+      "Tudo fica junto: saúde, peso, alimentação, despesas e memória, com histórico por pet e por família.",
       "Mais de uma pessoa pode cuidar da mesma família de pets — quem só acompanha não deveria conseguir editar por acidente. Essa regra vive no banco, não só na tela.",
     ],
   },
@@ -143,14 +143,23 @@ export const catCareInspect = {
 export const catCare: ProjectContent = {
   id: "catcare",
   status: "verified",
-  title: "CatCare",
+  /**
+   * "Multi-pet Care" is a provisional, descriptive display name — not the
+   * final commercial brand. The product supports multiple species, not just
+   * cats, and the official name hasn't been chosen yet. `id`, `links.repo`
+   * and `links.live` intentionally keep the repo's real "catcare"/"CatCare"
+   * values below; only `title` (the one place the UI renders a product
+   * name) changes. When the real brand is decided, update `title` here —
+   * this is the single point every display of the name reads from.
+   */
+  title: "Multi-pet Care",
   eyebrow: "01 / FEATURED PRODUCT",
-  tagline: "Um projeto pessoal que virou produto real.",
+  tagline: "Um produto multi-pet para rotina, saúde e cuidado compartilhado.",
   tags: ["typescript", "nextjs", "supabase", "postgresql", "rls", "auth", "backend"],
   links: {
     live: "https://cat-care-xi.vercel.app/",
     repo: "https://github.com/gabrielle-git/CatCare",
   },
   sourceNote:
-    "Verificado em 2026-08-20 via clone direto de github.com/gabrielle-git/CatCare — stack, 26 migrations, políticas RLS, papéis owner/caregiver/viewer e funções de autorização lidas diretamente do código, não inferidas do portfólio antigo.",
+    "Verificado em 2026-08-20 via clone direto de github.com/gabrielle-git/CatCare — stack, 26 migrations, políticas RLS, papéis owner/caregiver/viewer e funções de autorização lidas diretamente do código, não inferidas do portfólio antigo. Display name 'Multi-pet Care' é provisório (ver comentário acima); id/repo/live URL preservam o nome real do repositório.",
 };
