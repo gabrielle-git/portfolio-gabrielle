@@ -16,8 +16,8 @@
 }
 
 .heading {
-  font-family: var(--v3-font-display);
-  font-weight: 700;
+  font-family: var(--v3-font-serif);
+  font-weight: 600;
   font-size: 1.25rem;
   margin: 0;
   color: var(--v3-inspect-ink);

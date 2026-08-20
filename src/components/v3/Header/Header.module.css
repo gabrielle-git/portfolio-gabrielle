@@ -60,9 +60,5 @@
 .kbd {
   font-family: var(--v3-font-mono);
   font-size: 0.75rem;
-  color: var(--v3-ink-muted);
-  border: 1px solid var(--v3-border-strong);
-  border-radius: var(--v3-radius-sm);
-  padding: 0.3rem 0.6rem;
-  background: var(--v3-ghost-bg);
+  color: var(--v3-ink-dim);
 }

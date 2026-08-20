@@ -18,33 +18,51 @@ import type {
  * here, not the docs.
  */
 
+/**
+ * Visual mode content — sourced directly from CatCare's own real demo/mock
+ * dataset (src/lib/mock-data.ts in the CatCare repo), not invented for the
+ * portfolio. That file is what CatCare itself renders when Supabase isn't
+ * configured, badge and all ("Demonstração" — same copy, same styling
+ * convention, reused here deliberately). Concretely, from the real repo:
+ *
+ * - Pets "Dobby" and "Crystal", birth_date 2026-03-31 → ~4 meses old today.
+ * - Dobby's real demo weight series (demoWeights): 3200→3550→3900→4100→4250g.
+ * - Reminder "Vacina V4" due 2026-08-24T15:00 (demoReminders, rem-4).
+ * - Greeting/subheading copy ("Um resumo tranquilo do que importa hoje.")
+ *   and the "Demonstração" badge are copied verbatim from
+ *   src/app/(app)/page.tsx and globals.css in the CatCare repo.
+ *
+ * Earlier drafts used Figma's illustrative pet names/weights (Luna, Nino,
+ * "amanhã · 14:00") — replaced here with the product's own verified demo
+ * data per the Fase 1.2 correction ("não inventar dados").
+ */
 export const catCareVisual = {
+  demoBadge: "Demonstração",
   homeLabel: "CATCARE / HOME",
-  greeting: "Oi, Gabi.",
-  subheading: "Rotina dos seus gatos hoje",
+  greeting: "Boa tarde, família.",
+  subheading: "Um resumo tranquilo do que importa hoje.",
   pets: [
-    { name: "Dobby", meta: "4 meses", metric: "2,4 kg" },
-    { name: "Luna", meta: "neonatal", metric: "160 g" },
-    { name: "Nino", meta: "neonatal", metric: "124 g" },
+    { name: "Dobby", meta: "4 meses", metric: "4,25 kg" },
+    { name: "Crystal", meta: "4 meses", metric: "3,6 kg" },
   ],
   nextCare: {
-    label: "PRÓXIMO CUIDADO",
-    title: "Vacina",
-    when: "amanhã · 14:00",
+    label: "PRÓXIMOS CUIDADOS",
+    title: "Vacina V4 · Dobby",
+    when: "24 ago · 15:00",
   },
-  weightPanel: { label: "PESO / 30 DIAS" },
-  whyItExists: {
-    label: "PRODUCT CONTEXT",
+  weightPanel: { label: "PESO · DOBBY" },
+  weightSeries: [3200, 3550, 3900, 4100, 4250],
+  narrative: {
     title: "Cuidado multi-pet sem fragmentar a rotina.",
-    body: "Saúde, peso, neonatal, despesas, lembretes e memória no mesmo fluxo — com dados privados e múltiplos perfis.",
+    beats: [
+      "Cuidar de mais de um gato ao mesmo tempo — saudável, idoso ou recém-nascido — dispersa informação em anotações soltas e conversas.",
+      "O CatCare junta saúde, peso, alimentação, despesas e memória num só lugar, com histórico por pet e por família.",
+      "Mais de uma pessoa pode cuidar da mesma família de pets — quem só acompanha não deveria conseguir editar por acidente. Essa regra vive no banco, não só na tela.",
+    ],
   },
   cta: {
     live: "LIVE PRODUCT ↗",
     source: "SOURCE ↗",
-  },
-  hint: {
-    label: "hover / click",
-    body: "o card abre por dentro e revela a engenharia",
   },
 } as const;
 

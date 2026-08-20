@@ -11,73 +11,105 @@
   }
 }
 
+/* CatCare's own real product surface — see globals.css .cat-card in the
+   CatCare repo (border-radius:22px, translucent white, soft shadow). */
 .homeCard {
-  border: 1px solid var(--v3-border);
-  border-radius: var(--v3-radius-md);
+  border: 1px solid var(--catcare-border);
+  border-radius: var(--catcare-card-radius);
   padding: var(--v3-space-lg);
-  background: var(--v3-bg);
+  background: var(--catcare-cream);
+}
+
+.homeHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--v3-space-sm);
 }
 
 .homeLabel {
   font-family: var(--v3-font-mono);
   font-size: 0.6875rem;
   letter-spacing: 0.08em;
-  color: var(--v3-ink-dim);
+  color: var(--catcare-muted);
+}
+
+.demoBadge {
+  font-size: 0.5625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--catcare-lavender-strong);
+  background: var(--catcare-lavender-soft);
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
 }
 
 .greeting {
-  font-family: var(--v3-font-display);
+  font-family: var(--v3-font-serif);
+  font-weight: 600;
   font-size: 1.75rem;
-  color: var(--v3-ink);
-  margin: 0.35rem 0 0.15rem;
+  letter-spacing: -0.02em;
+  color: var(--catcare-graphite);
+  margin: 0.6rem 0 0.15rem;
 }
 
 .subheading {
-  font-size: 0.9375rem;
-  color: var(--v3-ink-muted);
+  font-size: 0.875rem;
+  color: var(--catcare-muted);
   margin: 0 0 var(--v3-space-md);
 }
 
 .petRow {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--v3-space-sm);
   margin-bottom: var(--v3-space-md);
 }
 
+@media (min-width: 420px) {
+  .petRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 .petCard {
-  border: 1px solid var(--v3-border);
-  border-radius: var(--v3-radius-sm);
-  padding: var(--v3-space-sm);
-  background: var(--v3-bg-raised);
+  border: 1px solid var(--catcare-border);
+  border-radius: 20px;
+  padding: 0.6rem 0.75rem;
+  background: rgba(255, 255, 255, 0.92);
   display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
 }
 
 .petAvatar {
+  flex: 0 0 auto;
   width: 2rem;
   height: 2rem;
-  border-radius: 50%;
-  background: var(--v3-ghost-bg);
-  border: 1px solid var(--v3-border-strong);
+  border-radius: 12px;
+  background: var(--catcare-lavender-soft);
+  color: var(--catcare-lavender-strong);
+  display: grid;
+  place-items: center;
+}
+
+.petInfo {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .petName {
-  font-weight: 600;
-  font-size: 0.9375rem;
-  color: var(--v3-ink);
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--catcare-graphite);
 }
 
 .petMeta {
   font-size: 0.75rem;
-  color: var(--v3-ink-dim);
-}
-
-.petMetric {
-  font-family: var(--v3-font-mono);
-  font-size: 0.9375rem;
-  color: var(--v3-purple);
+  color: var(--catcare-muted);
 }
 
 .miniGrid {
@@ -87,71 +119,66 @@
 }
 
 .miniCard {
-  border: 1px solid var(--v3-border);
-  border-radius: var(--v3-radius-sm);
-  padding: var(--v3-space-sm);
-  background: var(--v3-bg-raised);
+  border: 1px solid var(--catcare-border);
+  border-radius: 18px;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.92);
 }
 
 .miniLabel {
   font-family: var(--v3-font-mono);
   font-size: 0.625rem;
   letter-spacing: 0.06em;
-  color: var(--v3-ink-dim);
+  color: var(--catcare-muted);
   display: block;
   margin-bottom: 0.3rem;
 }
 
 .nextCareTitle {
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--v3-ink);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--catcare-graphite);
+  margin: 0;
 }
 
 .nextCareWhen {
   font-size: 0.75rem;
-  color: var(--v3-ink-muted);
+  color: var(--catcare-muted);
 }
 
 .sparkline {
   width: 100%;
-  height: 2.5rem;
+  height: 2.25rem;
   display: block;
 }
 
 .side {
   display: flex;
   flex-direction: column;
-  gap: var(--v3-space-md);
+  gap: var(--v3-space-sm);
   justify-content: center;
 }
 
-.whyLabel {
-  font-family: var(--v3-font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.08em;
-  color: var(--v3-ink-dim);
-}
-
-.whyTitle {
-  font-size: 1.375rem;
+.narrativeTitle {
+  font-family: var(--v3-font-serif);
   font-weight: 600;
+  font-size: 1.375rem;
   color: var(--v3-ink);
-  margin: 0.4rem 0 0.6rem;
+  margin: 0 0 0.35rem;
   line-height: 1.25;
 }
 
-.whyBody {
+.narrativeBeat {
   font-size: 0.9375rem;
   color: var(--v3-ink-muted);
   line-height: 1.6;
-  margin: 0 0 var(--v3-space-md);
+  margin: 0;
 }
 
 .linkRow {
   display: flex;
   gap: var(--v3-space-md);
-  margin-bottom: var(--v3-space-sm);
+  margin-top: var(--v3-space-sm);
 }
 
 .linkBtn {
@@ -171,15 +198,4 @@
 .linkSecondary {
   color: var(--v3-ink-muted);
   border-bottom-color: var(--v3-border-strong);
-}
-
-.hint {
-  font-size: 0.8125rem;
-  color: var(--v3-ink-dim);
-}
-
-.hintLabel {
-  font-family: var(--v3-font-mono);
-  color: var(--v3-ink-muted);
-  margin-right: 0.4rem;
 }

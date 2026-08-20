@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "@/styles/v3-tokens.css";
 import { Header } from "@/components/v3/Header/Header";
 import { Hero } from "@/components/v3/Hero/Hero";
-import { InteractionIndex } from "@/components/v3/InteractionIndex/InteractionIndex";
 import { FeaturedCase } from "@/components/v3/FeaturedCase/FeaturedCase";
 import styles from "./page.module.css";
 
@@ -11,6 +10,11 @@ import styles from "./page.module.css";
  * with Visual↔Inspect). Deliberately noindex: this is a work-in-progress
  * surface, not meant to compete with / in search results while incomplete.
  * See docs/V3-MIGRATION-PLAN.md section 13-A/B.
+ *
+ * Fase 1.2: InteractionIndex is deliberately NOT rendered here — a
+ * recruiter should reach real work (the Featured Case) immediately after
+ * the Hero. The component is preserved (src/components/v3/InteractionIndex)
+ * for reuse near "Under the Hood" in a later phase, not deleted.
  */
 export const metadata: Metadata = {
   title: "V3 preview · Gabrielle Campelo",
@@ -24,7 +28,6 @@ export default function V3Page() {
       <Header />
       <main>
         <Hero />
-        <InteractionIndex />
         <FeaturedCase />
       </main>
     </div>

@@ -23,7 +23,8 @@
 }
 
 .title {
-  font-family: var(--v3-font-display);
+  font-family: var(--v3-font-serif);
+  font-weight: 600;
   font-size: clamp(2rem, 5vw, 3.25rem);
   color: var(--v3-ink);
   margin: 0 0 0.35rem;

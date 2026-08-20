@@ -41,8 +41,11 @@
   --v3-inspect-ink-muted: #b6acc7;
   --v3-inspect-border: #523e5c;
 
-  /* Typography */
+  /* Typography — deliberate contrast: Syne (geometric/engineering) for
+     "Gabrielle" and small display accents, Fraunces (editorial serif) for
+     "Campelo", section titles and case titles. Body/interface stays sans. */
   --v3-font-display: var(--font-pixel), "Syne", var(--font-sans), sans-serif;
+  --v3-font-serif: var(--font-serif), Georgia, "Times New Roman", serif;
   --v3-font-body: var(--font-sans), system-ui, sans-serif;
   --v3-font-mono: var(--font-mono), "JetBrains Mono", monospace;
 
@@ -60,6 +63,20 @@
   --v3-radius-md: 8px;
   --v3-radius-lg: 10px;
 
+  /* CatCare's own real product tokens (sampled from its globals.css), used
+     only inside the CatCare Visual "window" so it authentically carries the
+     real product's rounder, softer identity rather than the portfolio's
+     flatter editorial chrome. See src/content/projects/catcare.ts. */
+  --catcare-lavender: #8e7dbe;
+  --catcare-lavender-soft: #eee9f8;
+  --catcare-lavender-strong: #7663ad;
+  --catcare-cream: #f7f1e8;
+  --catcare-border: #e4dde7;
+  --catcare-muted: #5c5266;
+  --catcare-graphite: #2a2230;
+  --catcare-card-radius: 22px;
+  --catcare-card-shadow: 0 12px 36px rgba(42, 34, 48, 0.06);
+
   /* Shadow — used sparingly, close to none */
   --v3-shadow-sm: 0 1px 2px rgba(36, 22, 44, 0.05);
 
@@ -72,6 +89,21 @@
   color: var(--v3-ink);
   min-height: 100vh;
   font-family: var(--v3-font-body);
+}
+
+/*
+ * Explicit, V3-scoped box-sizing reset. The legacy globals.css already sets
+ * `* { box-sizing: border-box; }` site-wide, so this is technically
+ * redundant today — but it's made explicit here (rather than relying on an
+ * unscoped legacy rule) so /v3 never silently depends on legacy CSS that
+ * could change independently of this route. Requested explicitly in the
+ * Fase 1.2 correction pass.
+ */
+.v3Root,
+.v3Root *,
+.v3Root *::before,
+.v3Root *::after {
+  box-sizing: border-box;
 }
 
 .v3Root ::selection {
