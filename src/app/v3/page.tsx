@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "@/styles/v3-tokens.css";
 import { Header } from "@/components/v3/Header/Header";
 import { Hero } from "@/components/v3/Hero/Hero";
+import { InteractionIndex } from "@/components/v3/InteractionIndex/InteractionIndex";
 import { FeaturedCase } from "@/components/v3/FeaturedCase/FeaturedCase";
 import styles from "./page.module.css";
 
@@ -23,6 +24,7 @@ export default function V3Page() {
       <Header />
       <main>
         <Hero />
+        <InteractionIndex />
         <FeaturedCase />
       </main>
     </div>

@@ -1,5 +1,5 @@
 .section {
-  padding: var(--v3-space-2xl) var(--v3-space-lg) var(--v3-space-3xl);
+  padding: var(--v3-space-xl) var(--v3-space-lg) var(--v3-space-3xl);
   max-width: 84rem;
   margin: 0 auto;
 }
@@ -25,7 +25,7 @@
 .title {
   font-family: var(--v3-font-display);
   font-size: clamp(2rem, 5vw, 3.25rem);
-  color: var(--v3-purple-deep);
+  color: var(--v3-ink);
   margin: 0 0 0.35rem;
   line-height: 1;
 }
@@ -38,38 +38,34 @@
 
 .toggle {
   display: inline-flex;
-  border: 1px solid var(--v3-border-strong);
-  border-radius: var(--v3-radius-full);
-  padding: 0.25rem;
-  background: var(--v3-bg-raised);
-  gap: 0.25rem;
+  gap: var(--v3-space-md);
 }
 
-.toggleBtn {
+.tab {
   font-family: var(--v3-font-mono);
   font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  padding: 0.5rem 1.1rem;
-  border-radius: var(--v3-radius-full);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 0.1rem 0 0.4rem;
   border: none;
   background: transparent;
-  color: var(--v3-ink-muted);
+  color: var(--v3-ink-dim);
   cursor: pointer;
-  transition: background var(--v3-duration-fast) var(--v3-ease), color var(--v3-duration-fast) var(--v3-ease);
+  border-bottom: 1.5px solid transparent;
 }
 
-.toggleBtn:hover {
-  color: var(--v3-ink);
+.tab:hover {
+  color: var(--v3-ink-muted);
 }
 
-.toggleBtnActive {
-  background: var(--v3-purple-deep);
-  color: var(--v3-bg-raised);
+.tabActive {
+  color: var(--v3-purple);
+  border-bottom-color: var(--v3-purple);
 }
 
 .stage {
+  position: relative;
   display: grid;
-  perspective: 1400px;
 }
 
 .panel {
@@ -77,8 +73,6 @@
   border-radius: var(--v3-radius-lg);
   overflow: hidden;
   border: 1px solid var(--v3-border);
-  box-shadow: var(--v3-shadow-lg);
-  transform-style: preserve-3d;
 }
 
 .panel[aria-hidden="true"] {

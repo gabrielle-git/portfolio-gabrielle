@@ -7,6 +7,29 @@
   gap: var(--v3-space-lg);
 }
 
+.headRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--v3-space-sm);
+}
+
+.heading {
+  font-family: var(--v3-font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin: 0;
+  color: var(--v3-inspect-ink);
+}
+
+.annotation {
+  font-family: var(--v3-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--v3-inspect-ink-muted);
+}
+
 .flowRow {
   display: flex;
   align-items: stretch;
@@ -15,26 +38,17 @@
 }
 
 .flowStep {
-  flex: 1 1 8rem;
+  flex: 1 1 7rem;
   border: 1px solid var(--v3-inspect-border);
   border-radius: var(--v3-radius-sm);
-  padding: var(--v3-space-sm);
-  background: rgba(255, 255, 255, 0.03);
+  padding: 0.75rem var(--v3-space-sm);
+  background: var(--v3-inspect-card);
 }
 
 .flowLabel {
   font-family: var(--v3-font-mono);
   font-size: 0.8125rem;
   font-weight: 600;
-  display: block;
-}
-
-.flowDetail {
-  font-size: 0.6875rem;
-  color: var(--v3-inspect-ink-muted);
-  line-height: 1.4;
-  display: block;
-  margin-top: 0.25rem;
 }
 
 .flowArrow {
@@ -56,22 +70,7 @@
   }
 }
 
-.secureBadge {
-  align-self: flex-start;
-  font-family: var(--v3-font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.06em;
-  background: var(--v3-inspect-accent);
-  color: var(--v3-purple-deep);
-  border-radius: var(--v3-radius-full);
-  padding: 0.35rem 0.8rem;
-}
-
 .domainRow {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
   font-family: var(--v3-font-mono);
   font-size: 0.875rem;
 }
@@ -87,29 +86,19 @@
 }
 
 .rolesRow {
-  display: flex;
-  gap: var(--v3-space-sm);
-  flex-wrap: wrap;
-}
-
-.roleChip {
-  border: 1px solid var(--v3-inspect-border);
-  border-radius: var(--v3-radius-sm);
-  padding: 0.4rem 0.75rem;
+  font-family: var(--v3-font-mono);
   font-size: 0.8125rem;
-  display: flex;
-  gap: 0.4rem;
-  align-items: baseline;
+  color: var(--v3-inspect-ink-muted);
+  margin: 0;
 }
 
 .roleLabel {
-  font-family: var(--v3-font-mono);
+  color: var(--v3-inspect-ink);
   font-weight: 600;
-  color: var(--v3-inspect-accent);
 }
 
-.roleDescription {
-  color: var(--v3-inspect-ink-muted);
+.rolesSep {
+  white-space: pre;
 }
 
 .grid {
@@ -125,7 +114,7 @@
 }
 
 .codeBlock {
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.25);
   border: 1px solid var(--v3-inspect-border);
   border-radius: var(--v3-radius-sm);
   padding: var(--v3-space-md);
@@ -153,36 +142,27 @@
   white-space: pre;
 }
 
-.provesBox {
+.evidenceBox {
   border: 1px solid var(--v3-inspect-border);
   border-radius: var(--v3-radius-sm);
   padding: var(--v3-space-md);
   display: flex;
   flex-direction: column;
   gap: var(--v3-space-sm);
+  background: var(--v3-inspect-card);
 }
 
-.provesLabel {
+.evidenceLabel {
   font-family: var(--v3-font-mono);
   font-size: 0.6875rem;
   letter-spacing: 0.06em;
   color: var(--v3-inspect-ink-muted);
 }
 
-.provesList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  list-style: none;
+.evidenceList {
+  font-size: 0.875rem;
+  color: var(--v3-inspect-ink);
   margin: 0;
-  padding: 0;
-}
-
-.provesItem {
-  font-size: 0.8125rem;
-  border: 1px solid var(--v3-inspect-border);
-  border-radius: var(--v3-radius-full);
-  padding: 0.3rem 0.7rem;
 }
 
 .note {

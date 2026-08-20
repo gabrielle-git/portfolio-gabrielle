@@ -5,36 +5,41 @@ import { profile } from "@/content/profile";
 import { useReducedMotion } from "@/lib/motion/reduced-motion";
 import styles from "./Hero.module.css";
 
-const railSteps = ["build", "test", "ship"];
-
+/**
+ * Editorial hero — correction pass (Fase 1.1).
+ *
+ * Deliberately removed from the first pass: decorative blobs/glow, the
+ * status pill, the "01 / human" tag, the build/test/ship rail, and the
+ * floating backend-first/product-minded badges. Those read as generic
+ * AI-portfolio template decoration; the current Figma (node 8:2) drops all
+ * of them in favor of a flat, editorial frame. See
+ * docs/V3-MIGRATION-PLAN.md for the full before/after.
+ *
+ * "ASK MY PORTFOLIO" is intentionally not a link yet — that section doesn't
+ * exist on /v3 in this phase, and a dead anchor is worse than an inert
+ * control (see plan, "CTA").
+ */
 export function Hero() {
   const prefersReducedMotion = useReducedMotion();
 
-  const rise = (delay: number) =>
-    prefersReducedMotion
-      ? {}
-      : {
-          initial: { opacity: 0, y: 16 },
-          animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] as const },
-        };
+  const reveal = prefersReducedMotion
+    ? {}
+    : {
+        initial: { opacity: 0, y: 10 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
+      };
 
   return (
     <section className={styles.hero} id="hero">
-      <div className={styles.decor} aria-hidden="true">
-        <span className={`${styles.blob} ${styles.blobLavender}`} />
-        <span className={`${styles.blob} ${styles.blobBlue}`} />
-        <span className={`${styles.blob} ${styles.blobBlush}`} />
-      </div>
-
-      <div className={styles.grid}>
-        <motion.div className={styles.textCol} {...rise(0)}>
+      <motion.div className={styles.grid} {...reveal}>
+        <div className={styles.textCol}>
           <span className={styles.availability}>{profile.availability}</span>
 
           <h1 className={styles.name}>
             {profile.firstName}
             <br />
-            {profile.lastName}
+            <span className={styles.nameAccent}>{profile.lastName}</span>
           </h1>
 
           <p className={styles.role}>{profile.role}</p>
@@ -45,46 +50,31 @@ export function Hero() {
             <a href="#featured-case" className={styles.ctaPrimary}>
               {profile.cta.exploreSystems}
             </a>
-            <a href="#ask-my-portfolio" className={styles.ctaSecondary}>
+            <span
+              className={styles.ctaSecondaryInert}
+              title="Ask My Portfolio — em breve"
+              aria-disabled="true"
+            >
               {profile.cta.askPortfolio}
-            </a>
+            </span>
             <a
               href={profile.links.github}
               target="_blank"
               rel="noreferrer"
-              className={styles.ctaSecondary}
+              className={styles.ctaGhost}
             >
               {profile.cta.github}
             </a>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div className={styles.photoCol} {...rise(0.15)}>
+        <div className={styles.photoCol}>
           <div className={styles.photoFrame}>
-            <div className={styles.rail} aria-hidden="true">
-              {railSteps.map((step) => (
-                <span key={step} className={styles.railStep}>
-                  {step}
-                </span>
-              ))}
-            </div>
-
-            <span className={styles.tagPill}>01 / human</span>
-
-            <div className={styles.photoPlaceholder}>
-              <span className={styles.photoLabel}>{profile.photoPlaceholder.label}</span>
-              <span className={styles.photoHint}>{profile.photoPlaceholder.hint}</span>
-            </div>
-
-            <span className={`${styles.floatBadge} ${styles.floatBadgeTop}`}>
-              {profile.badges[0]}
-            </span>
-            <span className={`${styles.floatBadge} ${styles.floatBadgeBottom}`}>
-              {profile.badges[1]}
-            </span>
+            <span className={styles.photoLabel}>{profile.photoPlaceholder.label}</span>
+            <span className={styles.photoHint}>{profile.photoPlaceholder.hint}</span>
           </div>
-        </motion.div>
-      </div>
+        </div>
+      </motion.div>
     </section>
   );
 }

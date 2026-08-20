@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useId, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { catCare } from "@/content/projects";
 import { useReducedMotion } from "@/lib/motion/reduced-motion";
@@ -10,29 +10,63 @@ import styles from "./FeaturedCase.module.css";
 
 type Mode = "visual" | "inspect";
 
+const TABS: { id: Mode; label: string }[] = [
+  { id: "visual", label: "VISUAL" },
+  { id: "inspect", label: "INSPECT" },
+];
+
 /**
  * Visual ↔ Inspect — the portfolio's signature interaction.
  *
- * Both modes render the *same* case, from two lenses: Visual is the product,
- * Inspect is the engineering behind it. Both panels are always mounted,
- * stacked in the same grid cell, and cross-fade/flip via `animate` driven by
- * `mode` — deliberately NOT AnimatePresence's mount/unmount + exit-then-enter
- * ("mode=wait") pattern, which was tried first and found to hang: framer-motion
- * never resolved the exit animation in this app's setup, so the outgoing
- * panel got stuck on screen forever while the toggle buttons still updated
- * correctly (verified directly in DOM — aria-selected flipped, panel content
- * didn't). Driving `animate` on two permanently-mounted elements sidesteps
- * that failure mode entirely and is the standard, more reliable pattern for
- * a two-state toggle transition.
+ * Correction pass (Fase 1.1): the toggle is now plain text with an
+ * underline on the active tab (matching the current Figma), not pill
+ * buttons. The transition dropped the rotateX/"card flip" feeling — that
+ * read as spectacle, not "the same system seen through a different lens".
+ * It's now a controlled crossfade with a small vertical shift only.
  *
- * The inactive panel is marked `inert` so it's unreachable by keyboard/screen
- * reader while hidden. With prefers-reduced-motion, transform/duration are
- * dropped — the content still swaps instantly and correctly.
+ * Both panels stay permanently mounted, stacked in the same grid cell,
+ * animated via `animate` (not AnimatePresence's mount/unmount + exit-then-
+ * enter) — that approach was tried first and found to hang: framer-motion
+ * never resolved the exit animation in this app's setup, leaving the
+ * outgoing panel stuck on screen while the toggle state itself updated
+ * correctly. Driving `animate` on two permanently-mounted elements
+ * sidesteps that failure mode and is the more reliable pattern here.
+ *
+ * Full ARIA tabs keyboard pattern: ArrowLeft/ArrowRight/Home/End move focus
+ * and activate (roving tabindex), not just click.
  */
 export function FeaturedCase() {
   const [mode, setMode] = useState<Mode>("visual");
   const prefersReducedMotion = useReducedMotion();
   const tabsId = useId();
+  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+
+  const activate = (index: number) => {
+    const tab = TABS[index];
+    setMode(tab.id);
+    tabRefs.current[index]?.focus();
+  };
+
+  const onKeyDown = (event: React.KeyboardEvent, index: number) => {
+    switch (event.key) {
+      case "ArrowRight":
+        event.preventDefault();
+        activate((index + 1) % TABS.length);
+        break;
+      case "ArrowLeft":
+        event.preventDefault();
+        activate((index - 1 + TABS.length) % TABS.length);
+        break;
+      case "Home":
+        event.preventDefault();
+        activate(0);
+        break;
+      case "End":
+        event.preventDefault();
+        activate(TABS.length - 1);
+        break;
+    }
+  };
 
   return (
     <section className={styles.section} id="featured-case">
@@ -44,60 +78,56 @@ export function FeaturedCase() {
         </div>
 
         <div className={styles.toggle} role="tablist" aria-label={`${catCare.title} — modo de visualização`}>
-          <button
-            type="button"
-            role="tab"
-            id={`${tabsId}-visual`}
-            aria-selected={mode === "visual"}
-            aria-controls={`${tabsId}-panel-visual`}
-            className={`${styles.toggleBtn} ${mode === "visual" ? styles.toggleBtnActive : ""}`}
-            onClick={() => setMode("visual")}
-          >
-            VISUAL
-          </button>
-          <button
-            type="button"
-            role="tab"
-            id={`${tabsId}-inspect`}
-            aria-selected={mode === "inspect"}
-            aria-controls={`${tabsId}-panel-inspect`}
-            className={`${styles.toggleBtn} ${mode === "inspect" ? styles.toggleBtnActive : ""}`}
-            onClick={() => setMode("inspect")}
-          >
-            INSPECT
-          </button>
+          {TABS.map((tab, index) => {
+            const active = mode === tab.id;
+            return (
+              <button
+                key={tab.id}
+                ref={(el) => {
+                  tabRefs.current[index] = el;
+                }}
+                type="button"
+                role="tab"
+                id={`${tabsId}-${tab.id}`}
+                aria-selected={active}
+                aria-controls={`${tabsId}-panel-${tab.id}`}
+                tabIndex={active ? 0 : -1}
+                className={`${styles.tab} ${active ? styles.tabActive : ""}`}
+                onClick={() => setMode(tab.id)}
+                onKeyDown={(event) => onKeyDown(event, index)}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
         </div>
       </div>
 
       <div className={styles.stage}>
-        {(["visual", "inspect"] as const).map((panelMode) => {
-          const active = mode === panelMode;
+        {TABS.map((tab) => {
+          const active = mode === tab.id;
           return (
             <motion.div
-              key={panelMode}
-              id={`${tabsId}-panel-${panelMode}`}
+              key={tab.id}
+              id={`${tabsId}-panel-${tab.id}`}
               role="tabpanel"
-              aria-labelledby={`${tabsId}-${panelMode}`}
+              aria-labelledby={`${tabsId}-${tab.id}`}
               aria-hidden={!active}
               inert={!active}
               className={styles.panel}
               animate={
                 prefersReducedMotion
                   ? { opacity: active ? 1 : 0 }
-                  : {
-                      opacity: active ? 1 : 0,
-                      rotateX: active ? 0 : panelMode === "visual" ? 8 : -8,
-                      y: active ? 0 : panelMode === "visual" ? -10 : 10,
-                    }
+                  : { opacity: active ? 1 : 0, y: active ? 0 : 8 }
               }
               transition={
                 prefersReducedMotion
                   ? { duration: 0.01 }
-                  : { duration: 0.42, ease: [0.22, 1, 0.36, 1] }
+                  : { duration: 0.32, ease: [0.22, 1, 0.36, 1] }
               }
               style={{ zIndex: active ? 1 : 0 }}
             >
-              {panelMode === "visual" ? <CatCareVisual /> : <CatCareInspect />}
+              {tab.id === "visual" ? <CatCareVisual /> : <CatCareInspect />}
             </motion.div>
           );
         })}

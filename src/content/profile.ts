@@ -6,16 +6,17 @@
 export const profile = {
   eyebrow: "gabrielle / systems",
   nav: ["PROJECTS", "EXPERIENCE", "ABOUT"],
-  availability: "AVAILABLE FOR REMOTE",
+  availability: "OPEN TO REMOTE · BRASIL / GLOBAL",
   firstName: "Gabrielle",
   lastName: "Campelo",
   role: "Full Stack Developer · Backend · Systems · Automation",
-  statement: "Eu gosto de construir coisas que funcionam por dentro e encantam por fora.",
-  subStatement: "Do modelo de dados ao deploy — produto, automação, segurança e experiência.",
-  badges: ["backend-first", "product-minded"] as const,
+  statement:
+    "Construo sistemas completos — dados, automação, segurança e interface trabalhando juntos.",
+  subStatement:
+    "Meu foco é backend e sistemas; o frontend entra para fazer a engenharia chegar bem até quem usa.",
   photoPlaceholder: {
     label: "SUA FOTO AQUI",
-    hint: "retrato vertical / editorial",
+    hint: "retrato real · vertical · editorial",
   },
   cta: {
     exploreSystems: "EXPLORE SYSTEMS ↘",

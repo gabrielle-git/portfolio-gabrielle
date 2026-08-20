@@ -15,7 +15,7 @@
   border: 1px solid var(--v3-border);
   border-radius: var(--v3-radius-md);
   padding: var(--v3-space-lg);
-  background: linear-gradient(165deg, var(--v3-bg-raised), var(--v3-lavender-soft) 140%);
+  background: var(--v3-bg);
 }
 
 .homeLabel {
@@ -28,7 +28,7 @@
 .greeting {
   font-family: var(--v3-font-display);
   font-size: 1.75rem;
-  color: var(--v3-purple-deep);
+  color: var(--v3-ink);
   margin: 0.35rem 0 0.15rem;
 }
 
@@ -49,17 +49,18 @@
   border: 1px solid var(--v3-border);
   border-radius: var(--v3-radius-sm);
   padding: var(--v3-space-sm);
-  background: var(--v3-bg);
+  background: var(--v3-bg-raised);
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
 }
 
 .petAvatar {
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--v3-lavender), var(--v3-blush));
+  background: var(--v3-ghost-bg);
+  border: 1px solid var(--v3-border-strong);
 }
 
 .petName {
@@ -89,7 +90,7 @@
   border: 1px solid var(--v3-border);
   border-radius: var(--v3-radius-sm);
   padding: var(--v3-space-sm);
-  background: var(--v3-bg);
+  background: var(--v3-bg-raised);
 }
 
 .miniLabel {
@@ -135,7 +136,7 @@
 .whyTitle {
   font-size: 1.375rem;
   font-weight: 600;
-  color: var(--v3-purple-deep);
+  color: var(--v3-ink);
   margin: 0.4rem 0 0.6rem;
   line-height: 1.25;
 }
@@ -149,26 +150,27 @@
 
 .linkRow {
   display: flex;
-  gap: var(--v3-space-sm);
+  gap: var(--v3-space-md);
   margin-bottom: var(--v3-space-sm);
 }
 
 .linkBtn {
   font-family: var(--v3-font-mono);
   font-size: 0.75rem;
-  padding: 0.55rem 1rem;
-  border-radius: var(--v3-radius-full);
+  font-weight: 600;
   text-decoration: none;
+  border-bottom: 1.5px solid transparent;
+  padding-bottom: 0.1rem;
 }
 
 .linkPrimary {
-  background: var(--v3-purple-deep);
-  color: var(--v3-bg-raised);
+  color: var(--v3-purple);
+  border-bottom-color: var(--v3-purple);
 }
 
 .linkSecondary {
-  border: 1px solid var(--v3-border-strong);
-  color: var(--v3-ink);
+  color: var(--v3-ink-muted);
+  border-bottom-color: var(--v3-border-strong);
 }
 
 .hint {

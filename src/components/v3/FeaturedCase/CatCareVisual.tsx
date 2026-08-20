@@ -62,12 +62,12 @@ export function CatCareVisual() {
         <div className={styles.linkRow}>
           {catCare.links.live ? (
             <a href={catCare.links.live} target="_blank" rel="noreferrer" className={`${styles.linkBtn} ${styles.linkPrimary}`}>
-              LIVE DEMO ↗
+              {v.cta.live}
             </a>
           ) : null}
           {catCare.links.repo ? (
             <a href={catCare.links.repo} target="_blank" rel="noreferrer" className={`${styles.linkBtn} ${styles.linkSecondary}`}>
-              SOURCE ↗
+              {v.cta.source}
             </a>
           ) : null}
         </div>

@@ -34,9 +34,13 @@ export const catCareVisual = {
   },
   weightPanel: { label: "PESO / 30 DIAS" },
   whyItExists: {
-    label: "WHY IT EXISTS",
+    label: "PRODUCT CONTEXT",
     title: "Cuidado multi-pet sem fragmentar a rotina.",
     body: "Saúde, peso, neonatal, despesas, lembretes e memória no mesmo fluxo — com dados privados e múltiplos perfis.",
+  },
+  cta: {
+    live: "LIVE PRODUCT ↗",
+    source: "SOURCE ↗",
   },
   hint: {
     label: "hover / click",
@@ -106,17 +110,14 @@ create policy "pets_member_insert" on public.pets
 };
 
 export const catCareInspect = {
-  secureBadge: "SECURE PATH",
+  heading: "Backend / architecture",
+  annotation: "RLS ENFORCED AT DATABASE LAYER",
   flow,
   domain,
   roles,
   codeSample,
-  whatThisProves: [
-    "authorization",
-    "data model",
-    "security",
-    "domain thinking",
-  ],
+  evidenceLabel: "ENGINEERING EVIDENCE",
+  evidence: ["authorization", "data model", "access control", "domain logic"],
   note:
     "viewer nunca grava — mesmo que a chamada da aplicação falhe ou seja contornada, a policy do Postgres nega a escrita.",
 } as const;
