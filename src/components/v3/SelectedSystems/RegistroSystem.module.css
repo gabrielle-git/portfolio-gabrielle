@@ -112,3 +112,20 @@
   color: var(--v3-inspect-ink-muted);
   display: block;
 }
+
+.sourceLink {
+  display: inline-block;
+  margin-top: var(--v3-space-md);
+  font-family: var(--v3-font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--v3-ink-muted);
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--v3-border-strong);
+  padding-bottom: 0.1rem;
+}
+
+.sourceLink:hover {
+  color: var(--v3-purple);
+  border-bottom-color: var(--v3-purple);
+}

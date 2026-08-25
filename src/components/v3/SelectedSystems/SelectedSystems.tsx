@@ -17,7 +17,7 @@ export function SelectedSystems() {
         <h2 className={styles.title} id="selected-systems-title">
           Cada projeto demonstra uma ideia diferente.
         </h2>
-        <p className={styles.subtitle}>Nada de três cards iguais. A interação nasce do problema que o sistema resolveu.</p>
+        <p className={styles.subtitle}>Automação documental, resiliência offline e um sistema de relações — três problemas diferentes, três formas de resolver.</p>
       </div>
 
       <IMLSystem />

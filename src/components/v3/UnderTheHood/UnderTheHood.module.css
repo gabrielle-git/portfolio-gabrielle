@@ -26,13 +26,6 @@
   margin: 0 0 0.35rem;
 }
 
-.subtitle {
-  font-family: var(--v3-font-mono);
-  font-size: 0.8125rem;
-  color: var(--v3-ink-muted);
-  margin: 0;
-}
-
 .maps {
   display: grid;
   grid-template-columns: 1fr;
@@ -80,20 +73,18 @@
   color: var(--v3-ink-dim);
 }
 
-.stackRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: var(--v3-space-md);
+.stackLine {
+  font-size: 0.875rem;
+  color: var(--v3-ink-muted);
+  margin: 0 0 var(--v3-space-md);
 }
 
-.stackItem {
+.stackLabel {
   font-family: var(--v3-font-mono);
-  font-size: 0.75rem;
-  color: var(--v3-ink-muted);
-  border: 1px solid var(--v3-border-strong);
-  border-radius: var(--v3-radius-sm);
-  padding: 0.3rem 0.6rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--v3-ink-dim);
+  margin-right: 0.4rem;
 }
 
 .linkRow {

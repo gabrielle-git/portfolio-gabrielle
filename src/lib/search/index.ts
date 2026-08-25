@@ -52,6 +52,11 @@ const KEYWORD_TAGS: Record<string, ProjectTag[]> = {
   "seguranca": ["security"],
   ai: ["ai"],
   "inteligencia artificial": ["ai"],
+  // No project/experience entry is explicitly labeled "DevOps" (no such
+  // claim exists to make) — this maps to infra/operations-adjacent tags
+  // (automation, resilience, security) as the closest honest proximity,
+  // not an invented specialization.
+  devops: ["automation", "offline-first", "security"],
 };
 
 // Strips Unicode combining diacritical marks (U+0300-U+036F) left behind by
@@ -109,17 +114,20 @@ export function searchPortfolio(rawQuery: string, limit = 5): SearchResult[] {
 
   for (const stage of experienceStages) {
     for (const entry of stage.entries) {
-      const haystack = normalize(`${entry.role} ${entry.client ?? ""} ${entry.note} ${stage.label}`);
+      const haystack = normalize(`${entry.contribution} ${entry.context ?? ""} ${entry.note} ${stage.label}`);
       let score = 0;
       if (haystack.includes(query)) score += 2;
       for (const tag of tags) {
         if (haystack.includes(normalize(tag))) score += 1;
       }
       if (score > 0) {
+        // Title is the contribution, not `context` — a project already
+        // matched by name reads as a near-duplicate next to "Registro ·
+        // projeto pessoal"; the activity description is clearly distinct.
         results.push({
-          id: `${stage.id}-${entry.client ?? entry.role}`,
+          id: `${stage.id}-${entry.context ?? entry.contribution}`,
           type: "experience",
-          title: entry.client ?? entry.role,
+          title: entry.contribution,
           description: entry.note,
           href: "#experience",
           score,

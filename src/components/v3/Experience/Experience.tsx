@@ -40,12 +40,12 @@ export function Experience() {
 
             <div className={styles.entries}>
               {stage.entries.map((entry) => (
-                <div className={styles.entry} key={`${entry.role}-${entry.period}`}>
+                <div className={styles.entry} key={`${entry.contribution}-${entry.period}`}>
                   <div className={styles.entryTop}>
-                    <span className={styles.entryRole}>{entry.role}</span>
+                    <span className={styles.entryRole}>{entry.contribution}</span>
                     <span className={styles.entryPeriod}>{entry.period}</span>
                   </div>
-                  {entry.client ? <span className={styles.entryClient}>{entry.client}</span> : null}
+                  {entry.context ? <span className={styles.entryClient}>{entry.context}</span> : null}
                   <p className={styles.entryNote}>{entry.note}</p>
                 </div>
               ))}

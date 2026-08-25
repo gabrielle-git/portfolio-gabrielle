@@ -15,7 +15,7 @@ export const referenceAction: Record<string, string> = {
 export const askMyPortfolio = {
   eyebrow: "05 / ASK MY PORTFOLIO",
   title: "Ask My Portfolio",
-  subtitle: "Busca sobre projetos e experiência — funciona mesmo sem IA.",
+  subtitle: "Explore projetos, decisões técnicas e experiência fazendo uma pergunta.",
   placeholder: "Pergunte sobre projetos, stack ou experiência…",
   suggestions: [
     "Qual projeto demonstra mais backend?",

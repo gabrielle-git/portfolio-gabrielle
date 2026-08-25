@@ -16,7 +16,7 @@ export function Footer() {
           Email
         </a>
       </div>
-      <span className={styles.note}>This portfolio is also a project.</span>
+      <span className={styles.note}>Gabrielle Campelo · Brasil</span>
     </footer>
   );
 }

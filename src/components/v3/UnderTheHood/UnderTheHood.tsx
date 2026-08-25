@@ -1,6 +1,5 @@
 "use client";
 
-import { InteractionIndex } from "@/components/v3/InteractionIndex/InteractionIndex";
 import { useCommandPalette } from "@/components/v3/CommandPalette/CommandPaletteContext";
 import { ConnectorDown } from "@/components/v3/shared/Connector";
 import { underTheHood } from "@/content/underTheHood";
@@ -9,11 +8,16 @@ import styles from "./UnderTheHood.module.css";
 
 /**
  * Explains the portfolio itself — a small system map, not bento cards.
- * InteractionIndex (built earlier, unused until now) lives here. Both maps
- * render as a vertical chain (same DOM shape), so both use the same
- * down connector — previously the motion map used a right-arrow glyph in a
- * vertical layout, a small pre-existing mismatch fixed here while removing
- * the arrow character.
+ *
+ * Pre-release trim: dropped the subtitle (it just re-listed the same
+ * concepts the two maps already show) and stopped rendering
+ * InteractionIndex here — this section already said "this portfolio is
+ * also a project" once; InteractionIndex repeated the same four concepts
+ * a second time, and those interactions were already demonstrated earlier
+ * on the page. The component itself is untouched, just not mounted.
+ *
+ * Both maps render as the same vertical chain, so both use the same down
+ * connector.
  */
 export function UnderTheHood() {
   const { setOpen } = useCommandPalette();
@@ -25,7 +29,6 @@ export function UnderTheHood() {
         <h2 className={styles.title} id="uth-title">
           {underTheHood.title}
         </h2>
-        <p className={styles.subtitle}>{underTheHood.subtitle}</p>
       </div>
 
       <div className={styles.maps}>
@@ -62,13 +65,9 @@ export function UnderTheHood() {
         </div>
       </div>
 
-      <div className={styles.stackRow}>
-        {underTheHood.stack.map((tech) => (
-          <span key={tech} className={styles.stackItem}>
-            {tech}
-          </span>
-        ))}
-      </div>
+      <p className={styles.stackLine}>
+        <span className={styles.stackLabel}>{underTheHood.stackLabel}</span> {underTheHood.stack}
+      </p>
 
       <div className={styles.linkRow}>
         <a className={styles.link} href={profile.links.github} target="_blank" rel="noreferrer">
@@ -78,8 +77,6 @@ export function UnderTheHood() {
           {underTheHood.links.openCommandMenu}
         </button>
       </div>
-
-      <InteractionIndex />
     </section>
   );
 }

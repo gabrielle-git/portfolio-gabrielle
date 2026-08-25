@@ -75,6 +75,12 @@ export function RegistroSystem() {
           ))}
         </div>
       </div>
+
+      {registro.links.repo ? (
+        <a className={styles.sourceLink} href={registro.links.repo} target="_blank" rel="noreferrer">
+          SOURCE
+        </a>
+      ) : null}
     </div>
   );
 }

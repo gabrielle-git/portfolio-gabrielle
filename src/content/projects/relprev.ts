@@ -48,7 +48,19 @@ export const relprevInspect = {
     { id: "network", label: "Network storage", detail: "Pasta de rede como fonte de verdade quando online." },
     { id: "backup", label: "Backup / restore", detail: "Restaura e realinha o mirror local após reconexão." },
   ],
-  facts: ["offline-first", "resilience", "local persistence", "operational continuity", "RBAC", "Web Crypto"],
+  propertiesLabel: "SYSTEM PROPERTIES",
+  properties: [
+    {
+      id: "resilience",
+      label: "Resiliência operacional",
+      detail: "Offline-first, com persistência local e continuidade operacional mesmo sem rede.",
+    },
+    {
+      id: "access",
+      label: "Autenticação e acesso",
+      detail: "Hash de senha via Web Crypto, com controle de papéis (RBAC).",
+    },
+  ],
 };
 
 export const relprev: ProjectContent = {

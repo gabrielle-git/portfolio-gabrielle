@@ -73,11 +73,12 @@ export function RELPREVSystem() {
               </div>
             ))}
           </div>
-          <div className={styles.factsRow}>
-            {relprevInspect.facts.map((fact) => (
-              <span key={fact} className={styles.fact}>
-                {fact}
-              </span>
+          <div className={styles.properties}>
+            <span className={styles.propertiesLabel}>{relprevInspect.propertiesLabel}</span>
+            {relprevInspect.properties.map((prop) => (
+              <p key={prop.id} className={styles.propertyLine}>
+                <span className={styles.propertyLabel}>{prop.label}</span> — {prop.detail}
+              </p>
             ))}
           </div>
         </div>

@@ -1,16 +1,32 @@
 /**
- * Experience timeline content. Roles/clients/periods are copied verbatim
- * from src/lib/data/projects.ts (the legacy portfolio's own project data —
- * already existing/verified in this repository, not invented for V3). No
- * new dates or job titles are introduced. CatCare/Multi-pet Care isn't
- * listed here because no verified role/period exists for it anywhere in
- * the repo — omitted rather than guessed, per the Sprint V3 instruction
- * not to invent dates.
+ * Experience timeline content — pre-release truth audit (see
+ * docs/V3-MIGRATION-PLAN.md / delivery report for the full classification).
+ *
+ * The previous version copied `role`/`client` verbatim from the legacy
+ * portfolio's src/lib/data/projects.ts and displayed them as formal job
+ * titles ("Engenheira de Software", "Tech Lead / Engenheira de Software").
+ * That old file is explicitly NOT a source of truth, and no formal
+ * title/seniority claim here has an independently confirmed source —
+ * displaying them as titles would overclaim. They're marked NEEDS
+ * CONFIRMATION in the delivery report and removed from what's rendered.
+ *
+ * In their place, `contribution` describes the actual technical activity
+ * (verb-first: "Automação de...", "Desenvolvimento de...") rather than
+ * asserting a job title. `context` avoids naming the specific government
+ * institution behind the first two entries — the IML/RELPREV project cards
+ * themselves already withhold that name deliberately (see
+ * src/content/projects/relprev.ts), so Experience naming it directly would
+ * have been an inconsistency, not just an unrelated omission.
+ *
+ * Periods and the private-sector/personal-project names (Sisters Live
+ * Marketing, Registro, NutriAprova) are also NEEDS CONFIRMATION — not
+ * independently re-verified this round — but carry no title/seniority
+ * claim, so they're kept, flagged, pending confirmation.
  */
 
 export interface ExperienceEntry {
-  role: string;
-  client?: string;
+  contribution: string;
+  context?: string;
   period: string;
   note: string;
 }
@@ -36,16 +52,14 @@ export const experienceStages: ExperienceStage[] = [
     title: "Dentro da operação real",
     entries: [
       {
-        role: "Engenheira de Software (cobertura de férias na divisão administrativa)",
-        client: "Polícia Civil do Distrito Federal · Instituto de Medicina Legal",
+        contribution: "Automação de processos de triagem documental em instituição pública",
         period: "2026",
-        note: "Perto o bastante do processo manual de triagem documental para ver exatamente onde ele quebrava.",
+        note: "Perto o bastante do processo manual para ver exatamente onde ele quebrava — esse contexto originou o IML.",
       },
       {
-        role: "Engenheira de Software",
-        client: "Polícia Civil do Distrito Federal · Divisão de Operações Aéreas",
+        contribution: "Desenvolvimento de sistema de registro de ocorrências operacionais em instituição pública",
         period: "2026",
-        note: "Registro de ocorrências operacionais sob restrição real de TI — sem internet garantida, sem servidor.",
+        note: "Restrição real de TI — sem internet garantida, sem servidor — esse contexto originou o RELPREV.",
       },
     ],
   },
@@ -55,10 +69,10 @@ export const experienceStages: ExperienceStage[] = [
     title: "Automatizando o que consumia horas",
     entries: [
       {
-        role: "Engenheira de Automação (PJ)",
-        client: "Sisters Live Marketing",
+        contribution: "Implementação de pipeline de automação de captação de leads",
+        context: "Sisters Live Marketing",
         period: "2025",
-        note: "Pipeline ETL ligando captação de leads, banco de dados e mensageria, com deduplicação e sanitização de dados.",
+        note: "Ligou captação, banco de dados e mensageria, com deduplicação e sanitização de dados.",
       },
     ],
   },
@@ -68,14 +82,14 @@ export const experienceStages: ExperienceStage[] = [
     title: "Sistemas completos, de ponta a ponta",
     entries: [
       {
-        role: "Desenvolvedora autoral",
-        client: "Registro (projeto pessoal)",
+        contribution: "Desenvolvimento autoral de sistema de registro e relações",
+        context: "Registro · projeto pessoal",
         period: "2026 — presente",
-        note: "Modelagem de domínio própria, pensada para migrar de armazenamento local para backend sem reescrever a aplicação.",
+        note: "Modelagem de domínio própria, com autenticação e RLS confirmados diretamente no repositório.",
       },
       {
-        role: "Tech Lead / Engenheira de Software",
-        client: "NutriAprova",
+        contribution: "Arquitetura e desenvolvimento de produto SaaS multi-perfil",
+        context: "NutriAprova",
         period: "2026 — presente",
         note: "Arquitetura multi-perfil com IA generativa isolada da experiência do usuário por fila assíncrona.",
       },

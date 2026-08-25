@@ -6,7 +6,6 @@
 export const underTheHood = {
   eyebrow: "07 / UNDER THE HOOD",
   title: "This portfolio is also a project.",
-  subtitle: "motion · command palette · portfolio search · AI enrichment · accessibility",
   contentMap: [
     { id: "content", label: "CONTENT", detail: "src/content — a estrutura tipada que alimenta cases, busca e IA." },
     { id: "search", label: "LOCAL SEARCH", detail: "Busca determinística por tags/palavra-chave, sem IA e sem vector DB." },
@@ -16,10 +15,11 @@ export const underTheHood = {
   motionMap: [
     { id: "ui", label: "UI", detail: "CSS Modules + design tokens, superfícies flat, hairlines." },
     { id: "motion", label: "MOTION", detail: "Só onde comunica algo — pipeline, estado online/offline, transições de resultado." },
-    { id: "reduced", label: "REDUCED MOTION", detail: "prefers-reduced-motion obrigatório em toda animação, não só nas principais." },
-    { id: "responsive", label: "RESPONSIVE / A11Y", detail: "Sem overflow horizontal, foco por teclado, roles ARIA onde fazem sentido." },
+    { id: "reduced", label: "REDUCED MOTION", detail: "prefers-reduced-motion obrigatório em toda animação." },
+    { id: "accessibility", label: "ACCESSIBILITY", detail: "Foco por teclado, roles ARIA, sem overflow horizontal." },
   ],
-  stack: ["Next.js", "React", "TypeScript", "CSS Modules", "Motion", "OpenRouter", "Vercel"],
+  stackLabel: "STACK",
+  stack: "Next.js, React, TypeScript, CSS Modules, Motion, OpenRouter, Vercel.",
   links: {
     viewSource: "VIEW SOURCE",
     openCommandMenu: "OPEN COMMAND MENU",

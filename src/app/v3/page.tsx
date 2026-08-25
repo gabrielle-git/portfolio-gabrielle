@@ -13,23 +13,46 @@ import { Footer } from "@/components/v3/Footer/Footer";
 import styles from "./page.module.css";
 
 /**
- * V3 preview route — Sprint V3 "complete core experience". Deliberately
- * noindex: work-in-progress surface, not meant to compete with / in search
- * results. See docs/V3-MIGRATION-PLAN.md.
+ * V3 preview route. Home order: Header -> Hero -> 01 Multi-pet Care
+ * (Visual/Inspect) -> 02 Selected Systems (IML/RELPREV/Registro) ->
+ * 03 Experience -> 04 About -> 05 Ask My Portfolio -> 06 Contact ->
+ * 07 Under the Hood -> Footer. InteractionIndex exists as a component but
+ * isn't rendered anywhere yet (pre-release trim — it repeated concepts
+ * already demonstrated on the page).
  *
- * Home order: Header → Hero → 01 Multi-pet Care (Visual↔Inspect) →
- * 02 Selected Systems (IML/RELPREV/Registro) → 03 Experience → 04 About →
- * 05 Ask My Portfolio → 06 Contact → 07 Under the Hood (incl.
- * InteractionIndex, reused here rather than between Hero and projects) →
- * Footer.
+ * Metadata below is written as the real production metadata (title,
+ * OpenGraph, Twitter, canonical) so it's ready when this route replaces /
+ * — that hasn't happened yet, so `robots` stays noindex/nofollow in the
+ * meantime. Flip only `robots` at promotion time; nothing else here should
+ * need to change.
  *
- * Still not implemented (next phase): nothing removed from scope here, but
- * IML/RELPREV/Registro won't get a full case page (`/cases/[id]`-equivalent
- * on V3) yet — only their Home-section presence.
+ * Still not implemented (next phase): IML/RELPREV/Registro don't get a full
+ * case page (`/cases/[id]`-equivalent on V3) yet — only their Home-section
+ * presence.
  */
+const V3_URL = "https://portfolio-gabrielle-one.vercel.app/v3";
+
 export const metadata: Metadata = {
-  title: "V3 preview · Gabrielle Campelo",
-  description: "Preview em construção da V3 do portfólio — não é a versão publicada.",
+  title: "Gabrielle Campelo · Software Engineer",
+  description:
+    "Engenheira de software backend-first — sistemas, automação e segurança, com a interface pensada para quem usa.",
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: V3_URL,
+    title: "Gabrielle Campelo · Software Engineer",
+    description: "Backend-first. Product-minded.",
+    siteName: "Gabrielle Campelo",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Gabrielle Campelo · Software Engineer",
+    description: "Backend-first. Product-minded.",
+  },
+  alternates: { canonical: V3_URL },
+  icons: { icon: "/avatar.png", apple: "/avatar.png" },
+  // Still a preview — set this to { index: true, follow: true } only when
+  // /v3 actually replaces / as the published home page.
   robots: { index: false, follow: false },
 };
 

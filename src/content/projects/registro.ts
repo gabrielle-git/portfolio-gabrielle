@@ -46,7 +46,7 @@ export const registro: ProjectContent = {
   kind: "relational",
   title: "Registro",
   eyebrow: "02 / SELECTED SYSTEMS",
-  tagline: "Um sistema de relações — setores, pessoas e diário — não um card com screenshot.",
+  tagline: "Setores, pessoas e diário conectados — um mapa de relações, não uma lista de registros soltos.",
   tags: ["react", "typescript", "vite", "supabase", "postgresql", "rls", "auth", "backend", "frontend"],
   links: {
     repo: "https://github.com/gabrielle-git/registro",

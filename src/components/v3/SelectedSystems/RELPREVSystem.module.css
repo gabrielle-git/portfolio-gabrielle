@@ -125,15 +125,28 @@
   display: block;
 }
 
-.factsRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
+.properties {
+  border-top: 1px solid var(--v3-inspect-border);
+  padding-top: var(--v3-space-sm);
 }
 
-.fact {
-  font-size: 0.75rem;
-  border: 1px solid var(--v3-inspect-border);
-  border-radius: var(--v3-radius-sm);
-  padding: 0.3rem 0.6rem;
+.propertiesLabel {
+  display: block;
+  font-family: var(--v3-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--v3-inspect-ink-muted);
+  margin-bottom: 0.4rem;
+}
+
+.propertyLine {
+  font-size: 0.8125rem;
+  color: var(--v3-inspect-ink-muted);
+  line-height: 1.5;
+  margin: 0 0 0.3rem;
+}
+
+.propertyLabel {
+  color: var(--v3-inspect-ink);
+  font-weight: 600;
 }
