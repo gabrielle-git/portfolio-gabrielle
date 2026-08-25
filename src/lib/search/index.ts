@@ -51,6 +51,7 @@ const KEYWORD_TAGS: Record<string, ProjectTag[]> = {
   security: ["security"],
   "seguranca": ["security"],
   ai: ["ai"],
+  ia: ["ai"],
   "inteligencia artificial": ["ai"],
   // No project/experience entry is explicitly labeled "DevOps" (no such
   // claim exists to make) — this maps to infra/operations-adjacent tags
@@ -68,12 +69,52 @@ function normalize(value: string): string {
   return value.toLowerCase().normalize("NFD").replace(DIACRITICS, "").trim();
 }
 
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/**
+ * Whole-word containment check. Plain `.includes()` on short keywords/tags
+ * (e.g. "ai") false-matches inside unrelated words — "quAIs", "operacionAIs"
+ * both contain "ai" as bare characters. Found via a real test: the query
+ * "Quais projetos usam Python?" was pulling in an unrelated RELPREV
+ * experience entry only because "operacionais" contains "ai". `\b` isn't
+ * reliable across accented/Unicode word chars, so boundaries are checked
+ * manually against non-alphanumeric neighbors instead.
+ */
+function includesWholeWord(haystack: string, needle: string): boolean {
+  if (!needle) return false;
+  const pattern = new RegExp(`(?:^|[^\\p{L}\\p{N}])${escapeRegExp(needle)}(?:$|[^\\p{L}\\p{N}])`, "u");
+  return pattern.test(haystack);
+}
+
 function matchedTags(query: string): Set<ProjectTag> {
   const tags = new Set<ProjectTag>();
   for (const [keyword, mapped] of Object.entries(KEYWORD_TAGS)) {
-    if (query.includes(normalize(keyword))) mapped.forEach((t) => tags.add(t));
+    const needle = normalize(keyword);
+    // Multi-word keywords ("row level security") are already unambiguous;
+    // only single, short tokens need the stricter whole-word check.
+    const matches = needle.includes(" ") ? query.includes(needle) : includesWholeWord(query, needle);
+    if (matches) mapped.forEach((t) => tags.add(t));
   }
   return tags;
+}
+
+/**
+ * All KEYWORD_TAGS keywords (Portuguese included — "ia", "automacao",
+ * "seguranca"...) that map to at least one of the given tags. Experience
+ * entries are free Portuguese text, not tagged data — checking them against
+ * the bare English tag identifier ("ai", "auth") mostly never matches
+ * Portuguese content ("IA generativa" doesn't contain "ai"; "autenticação"
+ * doesn't contain "auth"). Checking against every synonym that resolves to
+ * the matched tag(s) instead is what actually finds those mentions.
+ */
+function keywordsForTags(tagSet: Set<ProjectTag>): string[] {
+  const keywords: string[] = [];
+  for (const [keyword, mapped] of Object.entries(KEYWORD_TAGS)) {
+    if (mapped.some((t) => tagSet.has(t))) keywords.push(normalize(keyword));
+  }
+  return keywords;
 }
 
 export function projectHref(id: string): string {
@@ -112,13 +153,16 @@ export function searchPortfolio(rawQuery: string, limit = 5): SearchResult[] {
     }
   }
 
+  const matchedKeywords = keywordsForTags(tags);
+
   for (const stage of experienceStages) {
     for (const entry of stage.entries) {
       const haystack = normalize(`${entry.contribution} ${entry.context ?? ""} ${entry.note} ${stage.label}`);
       let score = 0;
       if (haystack.includes(query)) score += 2;
-      for (const tag of tags) {
-        if (haystack.includes(normalize(tag))) score += 1;
+      for (const keyword of matchedKeywords) {
+        const found = keyword.includes(" ") ? haystack.includes(keyword) : includesWholeWord(haystack, keyword);
+        if (found) score += 1;
       }
       if (score > 0) {
         // Title is the contribution, not `context` — a project already
