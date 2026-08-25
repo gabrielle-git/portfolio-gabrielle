@@ -15,7 +15,7 @@ export interface CommandAction {
  */
 export const commandActions: CommandAction[] = [
   { id: "projects", label: "Projects", href: "#featured-case" },
-  { id: "catcare", label: "Multi-pet Care", hint: "Visual ↔ Inspect", href: "#featured-case" },
+  { id: "catcare", label: "Multi-pet Care", hint: "Visual / Inspect", href: "#featured-case" },
   { id: "iml", label: "IML", hint: "pipeline", href: "#iml" },
   { id: "relprev", label: "RELPREV", hint: "offline-first", href: "#relprev" },
   { id: "registro", label: "Registro", hint: "relações", href: "#registro" },

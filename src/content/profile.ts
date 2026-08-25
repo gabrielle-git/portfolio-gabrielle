@@ -19,9 +19,9 @@ export const profile = {
     hint: "retrato real · vertical · editorial",
   },
   cta: {
-    exploreSystems: "EXPLORE SYSTEMS ↘",
+    exploreSystems: "EXPLORE SYSTEMS",
     askPortfolio: "ASK MY PORTFOLIO",
-    github: "GITHUB ↗",
+    github: "GITHUB",
   },
   links: {
     github: "https://github.com/gabrielle-git",

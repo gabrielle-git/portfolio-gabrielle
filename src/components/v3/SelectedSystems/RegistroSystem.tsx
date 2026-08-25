@@ -4,6 +4,7 @@ import { Fragment, useState } from "react";
 import { motion } from "framer-motion";
 import { registro, registroHierarchy, registroInspect } from "@/content/projects";
 import { useReducedMotion } from "@/lib/motion/reduced-motion";
+import { ConnectorDown } from "@/components/v3/shared/Connector";
 import shared from "./shared.module.css";
 import styles from "./RegistroSystem.module.css";
 
@@ -41,7 +42,11 @@ export function RegistroSystem() {
                 >
                   {node.label}
                 </button>
-                {index < registroHierarchy.length - 1 ? <span className={styles.connector}>↓</span> : null}
+                {index < registroHierarchy.length - 1 ? (
+                  <span className={styles.connector}>
+                    <ConnectorDown />
+                  </span>
+                ) : null}
               </Fragment>
             ))}
           </div>

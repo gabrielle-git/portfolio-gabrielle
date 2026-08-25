@@ -28,8 +28,8 @@ export const imlPipeline: PipelineStage[] = [
 
 export const imlMetric = {
   label: "TEMPO DE PROCESSAMENTO",
-  from: "hours",
-  to: "seconds",
+  before: { value: "Hours", detail: "processo manual" },
+  after: { value: "Seconds", detail: "pipeline automatizado" },
   note: "Redução verificada pela própria autora ao substituir a triagem manual pelo pipeline.",
 };
 

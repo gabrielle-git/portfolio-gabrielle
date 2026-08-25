@@ -1,0 +1,26 @@
+/*
+ * V3-wide rule: no emoji, no Unicode arrow glyphs (-> <- ^ v <->  etc.) in
+ * user-facing UI. Every pipeline/flow/hierarchy connector is drawn with CSS
+ * borders instead — a small rotated square showing two adjacent borders,
+ * the standard "chevron" technique. `currentColor` so each call site
+ * controls color via its own text color.
+ */
+
+.chevronRight,
+.chevronDown {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-top: 1.5px solid currentColor;
+  border-right: 1.5px solid currentColor;
+  opacity: 0.55;
+}
+
+.chevronRight {
+  transform: rotate(45deg);
+}
+
+.chevronDown {
+  transform: rotate(135deg);
+}

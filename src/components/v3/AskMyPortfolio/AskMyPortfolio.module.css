@@ -129,20 +129,30 @@
 
 .ref {
   display: inline-flex;
-  align-items: baseline;
-  gap: 0.5rem;
-  font-family: var(--v3-font-mono);
-  font-size: 0.8125rem;
-  color: var(--v3-ink);
+  flex-direction: column;
+  gap: 0.15rem;
   text-decoration: none;
   width: fit-content;
-  border-bottom: 1.5px solid var(--v3-border-strong);
-  padding-bottom: 0.1rem;
+  border-left: 2px solid var(--v3-border-strong);
+  padding-left: 0.65rem;
+  transition: border-color var(--v3-duration-fast) var(--v3-ease);
 }
 
-.refArrow {
-  color: var(--v3-purple);
+.ref:hover {
+  border-left-color: var(--v3-purple);
+}
+
+.refTitle {
+  font-size: 0.9375rem;
   font-weight: 600;
+  color: var(--v3-ink);
+}
+
+.refAction {
+  font-family: var(--v3-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--v3-purple);
 }
 
 .status {

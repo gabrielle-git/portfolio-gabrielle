@@ -125,9 +125,8 @@ export function AskMyPortfolio() {
             <div className={styles.refs}>
               {result.references.map((ref) => (
                 <a key={ref.href + ref.title} href={ref.href} className={styles.ref}>
-                  {ref.title}
-                  <span className={styles.refArrow}>→</span>
-                  {referenceAction[ref.href.replace("#", "")] ?? "VIEW SECTION"}
+                  <span className={styles.refTitle}>{ref.title}</span>
+                  <span className={styles.refAction}>{referenceAction[ref.href.replace("#", "")] ?? "VIEW SECTION"}</span>
                 </a>
               ))}
             </div>

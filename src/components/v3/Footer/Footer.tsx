@@ -7,13 +7,13 @@ export function Footer() {
     <footer className={styles.footer}>
       <div className={styles.links}>
         <a className={styles.link} href={profile.links.github} target="_blank" rel="noreferrer">
-          GitHub ↗
+          GitHub
         </a>
         <a className={styles.link} href={profile.links.linkedin} target="_blank" rel="noreferrer">
-          LinkedIn ↗
+          LinkedIn
         </a>
         <a className={styles.link} href={`mailto:${contact.email}`}>
-          Email ↗
+          Email
         </a>
       </div>
       <span className={styles.note}>This portfolio is also a project.</span>

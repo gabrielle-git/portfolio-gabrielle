@@ -82,6 +82,9 @@
 }
 
 .domainArrow {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0.4rem;
   color: var(--v3-inspect-ink-muted);
 }
 

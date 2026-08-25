@@ -2,11 +2,19 @@
 
 import { InteractionIndex } from "@/components/v3/InteractionIndex/InteractionIndex";
 import { useCommandPalette } from "@/components/v3/CommandPalette/CommandPaletteContext";
+import { ConnectorDown } from "@/components/v3/shared/Connector";
 import { underTheHood } from "@/content/underTheHood";
 import { profile } from "@/content/profile";
 import styles from "./UnderTheHood.module.css";
 
-/** Explains the portfolio itself — a small system map, not bento cards. InteractionIndex (built earlier, unused until now) lives here. */
+/**
+ * Explains the portfolio itself — a small system map, not bento cards.
+ * InteractionIndex (built earlier, unused until now) lives here. Both maps
+ * render as a vertical chain (same DOM shape), so both use the same
+ * down connector — previously the motion map used a right-arrow glyph in a
+ * vertical layout, a small pre-existing mismatch fixed here while removing
+ * the arrow character.
+ */
 export function UnderTheHood() {
   const { setOpen } = useCommandPalette();
 
@@ -27,7 +35,11 @@ export function UnderTheHood() {
               <div key={node.id} className={styles.mapNode}>
                 <span className={styles.mapLabel}>{node.label}</span>
                 <span className={styles.mapDetail}>{node.detail}</span>
-                {index < underTheHood.contentMap.length - 1 ? <div className={styles.mapArrow}>↓</div> : null}
+                {index < underTheHood.contentMap.length - 1 ? (
+                  <div className={styles.mapArrow}>
+                    <ConnectorDown />
+                  </div>
+                ) : null}
               </div>
             ))}
           </div>
@@ -39,7 +51,11 @@ export function UnderTheHood() {
               <div key={node.id} className={styles.mapNode}>
                 <span className={styles.mapLabel}>{node.label}</span>
                 <span className={styles.mapDetail}>{node.detail}</span>
-                {index < underTheHood.motionMap.length - 1 ? <div className={styles.mapArrow}>→</div> : null}
+                {index < underTheHood.motionMap.length - 1 ? (
+                  <div className={styles.mapArrow}>
+                    <ConnectorDown />
+                  </div>
+                ) : null}
               </div>
             ))}
           </div>

@@ -24,6 +24,8 @@
 
 .link:hover {
   color: var(--v3-ink);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 .note {

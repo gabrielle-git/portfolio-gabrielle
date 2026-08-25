@@ -15,8 +15,8 @@ export interface InteractionEntry {
 export const interactions: InteractionEntry[] = [
   {
     id: "visual-inspect",
-    title: "VISUAL ↔ INSPECT",
-    subtitle: "produto ↔ engenharia",
+    title: "VISUAL / INSPECT",
+    subtitle: "produto e engenharia",
     href: "#featured-case",
   },
   {

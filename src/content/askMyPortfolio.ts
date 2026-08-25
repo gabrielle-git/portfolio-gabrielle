@@ -1,8 +1,8 @@
 /**
  * Action verb per section anchor (matches the hrefs searchPortfolio()
  * returns, see src/lib/search), so reference links read contextually —
- * "Multi-pet Care → OPEN INSPECT", "IML → VIEW PIPELINE" — not one generic
- * "view" everywhere.
+ * title and action rendered as two typographic parts of the same link
+ * (see AskMyPortfolio.tsx), not one generic "view" everywhere.
  */
 export const referenceAction: Record<string, string> = {
   "featured-case": "OPEN INSPECT",

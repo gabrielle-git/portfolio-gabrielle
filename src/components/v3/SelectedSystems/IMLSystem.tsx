@@ -30,11 +30,18 @@ export function IMLSystem() {
 
       <div className={styles.body}>
         <div className={styles.metricRow}>
-          <span className={styles.metric}>
-            {imlMetric.from}
-            <span className={styles.metricArrow}>→</span>
-            {imlMetric.to}
-          </span>
+          <span className={shared.eyebrow}>{imlMetric.label}</span>
+          <div className={styles.metricBlocks}>
+            <div className={styles.metricBlock}>
+              <span className={styles.metricValue}>{imlMetric.before.value}</span>
+              <span className={styles.metricDetail}>{imlMetric.before.detail}</span>
+            </div>
+            <span className={styles.metricLine} aria-hidden="true" />
+            <div className={styles.metricBlock}>
+              <span className={styles.metricValue}>{imlMetric.after.value}</span>
+              <span className={styles.metricDetail}>{imlMetric.after.detail}</span>
+            </div>
+          </div>
           <span className={styles.metricNote}>{imlMetric.note}</span>
         </div>
 
@@ -46,11 +53,12 @@ export function IMLSystem() {
                 role="tab"
                 aria-selected={activeStage === stage.id}
                 aria-controls="iml-stage-detail"
-                className={`${styles.stageBtn} ${activeStage === stage.id ? styles.stageActive : ""}`}
+                className={`${styles.stageBtn} ${activeStage === stage.id ? styles.stageActive : ""} ${
+                  index < imlPipeline.length - 1 ? styles.stageConnected : ""
+                }`}
                 onClick={() => setActiveStage(stage.id)}
               >
                 {stage.label}
-                {index < imlPipeline.length - 1 ? <span className={styles.stageArrow}>→</span> : null}
               </button>
             </Fragment>
           ))}

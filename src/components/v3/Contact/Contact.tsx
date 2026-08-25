@@ -16,17 +16,17 @@ export function Contact() {
 
         <div className={styles.links}>
           <a className={styles.link} href={`mailto:${contact.email}`}>
-            EMAIL ↗
+            EMAIL
           </a>
           <a className={styles.link} href={profile.links.linkedin} target="_blank" rel="noreferrer">
-            LINKEDIN ↗
+            LINKEDIN
           </a>
           <a className={styles.link} href={profile.links.github} target="_blank" rel="noreferrer">
-            GITHUB ↗
+            GITHUB
           </a>
           {contact.cvAvailable ? (
             <a className={styles.link} href="/cv.pdf" target="_blank" rel="noreferrer">
-              CV ↗
+              CV
             </a>
           ) : (
             <span className={styles.linkInert} title="Em breve">

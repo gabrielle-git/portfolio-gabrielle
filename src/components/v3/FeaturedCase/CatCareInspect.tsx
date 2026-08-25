@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { catCareInspect } from "@/content/projects";
+import { ConnectorRight } from "@/components/v3/shared/Connector";
 import styles from "./CatCareInspect.module.css";
 
 /**
@@ -29,8 +30,8 @@ export function CatCareInspect() {
               <span className={styles.flowLabel}>{step.label}</span>
             </div>
             {index < i.flow.length - 1 ? (
-              <span className={styles.flowArrow} aria-hidden="true">
-                →
+              <span className={styles.flowArrow}>
+                <ConnectorRight />
               </span>
             ) : null}
           </Fragment>
@@ -43,7 +44,11 @@ export function CatCareInspect() {
             <span className={styles.domainNode} title={node.detail}>
               {node.label}
             </span>
-            {index < i.domain.length - 1 ? <span className={styles.domainArrow}> → </span> : null}
+            {index < i.domain.length - 1 ? (
+              <span className={styles.domainArrow}>
+                <ConnectorRight />
+              </span>
+            ) : null}
           </span>
         ))}
       </div>

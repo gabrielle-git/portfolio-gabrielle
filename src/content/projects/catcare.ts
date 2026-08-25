@@ -61,8 +61,8 @@ export const catCareVisual = {
     ],
   },
   cta: {
-    live: "LIVE PRODUCT ↗",
-    source: "SOURCE ↗",
+    live: "LIVE PRODUCT",
+    source: "SOURCE",
   },
 } as const;
 

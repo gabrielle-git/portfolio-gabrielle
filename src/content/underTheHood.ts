@@ -21,7 +21,7 @@ export const underTheHood = {
   ],
   stack: ["Next.js", "React", "TypeScript", "CSS Modules", "Motion", "OpenRouter", "Vercel"],
   links: {
-    viewSource: "VIEW SOURCE ↗",
+    viewSource: "VIEW SOURCE",
     openCommandMenu: "OPEN COMMAND MENU",
   },
 };

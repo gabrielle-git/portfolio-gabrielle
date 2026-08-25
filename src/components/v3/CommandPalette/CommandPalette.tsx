@@ -24,7 +24,7 @@ function isTypingTarget(el: Element | null): boolean {
 }
 
 function toItem(action: CommandAction): PaletteItem {
-  return { id: action.id, label: action.label, hint: action.hint ?? (action.external ? "↗" : ""), href: action.href, external: action.external };
+  return { id: action.id, label: action.label, hint: action.hint ?? (action.external ? "external" : ""), href: action.href, external: action.external };
 }
 
 /**
